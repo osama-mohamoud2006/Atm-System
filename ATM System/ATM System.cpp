@@ -112,7 +112,7 @@ vector<StUser> VectorThatHaveAllData(string path) {
 }
 
 // write the edited vector on file again 
-void EditFile(vector<StUser> VectorThatHaveAllData , string path) 
+void EditFile(vector<StUser> &VectorThatHaveAllData , string path) 
 {
 	// take the edited vector and push the data into file
 
@@ -125,7 +125,7 @@ void EditFile(vector<StUser> VectorThatHaveAllData , string path)
 		for (StUser& Vdata : VectorThatHaveAllData) {
 
 			line = ConvertRecordToLine(Vdata);
-			write << line;
+			write << line << endl;
 		}
 		write.close();
 	}
@@ -154,7 +154,7 @@ bool FindUserByAccountNumber(string account_number, StUser &currentUser , vector
 }
 
 //check password and the account number 
-bool IsAccountNumberExist(string account_number, string Pin,StUser& currentUser, vector<StUser>& VectorThatHaveAllData) {
+bool IsUserAuthenticated(string account_number, string Pin,StUser& currentUser, vector<StUser>& VectorThatHaveAllData) {
 
 	if (FindUserByAccountNumber(account_number, currentUser, VectorThatHaveAllData)) {
 
@@ -182,6 +182,10 @@ void main_menu() {
 
 }
 
+void Start() {
+	main_menu(); // call main menu normally 
+}
+
 void login() {
 
 	vector<StUser> VectorThatHaveAllClients = VectorThatHaveAllData(path);
@@ -194,9 +198,9 @@ void login() {
 		string AccountNumber = read_string("\nenter Account Number: ");
 		string Pin = read_string("\nenter Pin: ");
 
-		if (IsAccountNumberExist(AccountNumber,Pin,CurrentUser, VectorThatHaveAllClients))
+		if (IsUserAuthenticated(AccountNumber,Pin,CurrentUser, VectorThatHaveAllClients))
 		{
-			main_menu(); // call main menu normally 
+			Start(); // start the program after logining in
 			check = true;
 		}
 		else {
