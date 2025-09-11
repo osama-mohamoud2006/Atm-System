@@ -39,6 +39,7 @@ void print_menu_option(string option_name) {
 	cout << "\n_________________________________________________\n";
 }
 
+
 vector<string> SplitString(string LineOfData , string delmi= "#//#") {
 
 	vector<string> res; 
@@ -111,6 +112,7 @@ vector<StUser> VectorThatHaveAllData(string path) {
 	return data;
 }
 
+
 // write the edited vector on file again 
 void EditFile(vector<StUser> &VectorThatHaveAllData , string path) 
 {
@@ -138,11 +140,39 @@ void EditFile(vector<StUser> &VectorThatHaveAllData , string path)
 }
 
 
+bool IsAccountNumberExist() {
+
+}
+
+void Deposit(vector<StUser>& VectorThatHaveAllClients) {
+
+	int m = 0; 
+	cout << "enter money to deposit: ";
+	m = enter_postive_number("");
 
 
-void CheckBalance(StUser current_user) {
+	for (StUser& U : VectorThatHaveAllClients) {
 
-	cout << "\n\n\t\t The User \"" << current_user.name<<"\" account balance is: "<< current_user.account_balance << endl;
+		if (U.account_number == CurrentUser.account_number) {
+			U.account_balance += m;
+			ConvertRecordToLine(CurrentUser);
+			EditFile(VectorThatHaveAllClients, path);
+			break;
+		}
+	}
+	 
+
+	
+
+
+
+}
+
+void CheckBalance(vector<StUser>& VectorThatHaveAllClients) {
+
+
+
+	//cout << "\n\n\t\t The User \"" << current_user.name<<"\" 's account balance is: "<< current_user.account_balance << endl;
 	
 }
 
@@ -170,13 +200,13 @@ void ImplementOptionAccordingToUserChoice(enMainMenuOptions Option ,vector<StUse
 
 	case enMainMenuOptions::eDposit:
 		system("cls");
-		cout << "\nwill be Normal Deposit soon!\n";
+		Deposit(VectorThatHaveAllClients);
 		back_to_menu();
 		break;
 
 	case enMainMenuOptions::eCheckBalance:
 		system("cls");
-		cout << "\nwill be Check Balance  Deposit soon!\n";
+		//CheckBalance( CurrentUser);
 		back_to_menu();
 		break;
 
