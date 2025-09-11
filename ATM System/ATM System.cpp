@@ -139,34 +139,59 @@ void EditFile(vector<StUser> &VectorThatHaveAllData , string path)
 
 }
 
-
-bool IsAccountNumberExist() {
-
+bool EnterY_N() {
+	char c;
+	cin >> c;
+	return (toupper(c) == 'Y'); // return true if it is yes 
 }
 
-void Deposit(vector<StUser>& VectorThatHaveAllClients) {
-
-	int m = 0; 
-	cout << "enter money to deposit: ";
-	m = enter_postive_number("");
-
-
-	for (StUser& U : VectorThatHaveAllClients) {
-
-		if (U.account_number == CurrentUser.account_number) {
-			U.account_balance += m;
-			ConvertRecordToLine(CurrentUser);
-			EditFile(VectorThatHaveAllClients, path);
-			break;
-		}
-	}
-	 
+bool IsAccountNumberExistInVector(StUser UserFromVectorThatHaveAllClients , StUser User) {
 
 	
 
-
-
+	if (UserFromVectorThatHaveAllClients.account_number == User.account_number) {
+		return true;
+	}
+	else return false; 
+	
 }
+
+bool ConfrimOperation(string OperationName) {
+
+	cout << "Are you sure you want to perform " << OperationName << " [y],[n]: ";
+	if (EnterY_N()) return true; // return true if it is true
+	else return false; 
+}
+
+void DepositMainLogic(vector<StUser>& VectorThatHaveAllClients, int amount ) {
+
+	for (StUser& U : VectorThatHaveAllClients) {
+
+		if (IsAccountNumberExistInVector(U, CurrentUser) == true) {
+			U.account_balance += amount;
+			break;
+		}
+	}
+	EditFile(VectorThatHaveAllClients, path); // update file
+	VectorThatHaveAllData(path);//refresh vector 
+}
+
+void ShowDepositScreen(vector<StUser>& VectorThatHaveAllClients) {
+
+	print_menu_option("Deposit Screen");
+
+	int AmountToDeposit = enter_postive_number("\nEnter a positive Deposit Amount: ");
+
+	if (ConfrimOperation("Deposit")) {
+		DepositMainLogic(VectorThatHaveAllClients, AmountToDeposit);
+		cout << "\nDone Successfully. " << "Now balance is: " << CurrentUser.account_balance << endl;
+	}
+	else {
+		cout << "\n\a No Changes On User's Balance!\n\n";
+	}
+}
+
+
 
 void CheckBalance(vector<StUser>& VectorThatHaveAllClients) {
 
@@ -200,7 +225,7 @@ void ImplementOptionAccordingToUserChoice(enMainMenuOptions Option ,vector<StUse
 
 	case enMainMenuOptions::eDposit:
 		system("cls");
-		Deposit(VectorThatHaveAllClients);
+		ShowDepositScreen(VectorThatHaveAllClients);
 		back_to_menu();
 		break;
 
