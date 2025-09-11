@@ -40,10 +40,10 @@ void print_menu_option(string option_name) {
 }
 
 
-vector<string> SplitString(string LineOfData , string delmi= "#//#") {
+vector<string> SplitString(string LineOfData, string delmi = "#//#") {
 
-	vector<string> res; 
-	
+	vector<string> res;
+
 	short pos;
 	string sword;
 
@@ -55,15 +55,15 @@ vector<string> SplitString(string LineOfData , string delmi= "#//#") {
 		LineOfData.erase(0, pos + delmi.length());
 	}
 
-	if(LineOfData!="")  res.push_back(LineOfData);
+	if (LineOfData != "")  res.push_back(LineOfData);
 
 	return res;
 }
 
 // will convert the string into data in struct 
 StUser ConvertLineToRecord(string LineOfData) {
-	
-	
+
+
 	if (LineOfData == "") {
 		screen_color(red);
 		cout << "\n\aError !" << endl;
@@ -71,20 +71,20 @@ StUser ConvertLineToRecord(string LineOfData) {
 	}
 
 	StUser user;
-	vector<string> DataSplited= SplitString(LineOfData,delmi);
+	vector<string> DataSplited = SplitString(LineOfData, delmi);
 
 	user.account_number = DataSplited.at(0);//--> i care about it
 	user.pin = DataSplited.at(1);//--> i care about it
 	user.name = DataSplited.at(2);
 	user.phone = DataSplited.at(3);
-	user.account_balance =stoi(DataSplited.at(4)); //--> i care about it
+	user.account_balance = stoi(DataSplited.at(4)); //--> i care about it
 
-	return user; 
+	return user;
 }
 
 // convert struct to line(string) 
 string ConvertRecordToLine(StUser UserData) {
-return (UserData.account_number + delmi + (UserData.pin) + delmi + UserData.name + delmi + UserData.phone + delmi + to_string(UserData.account_balance));
+	return (UserData.account_number + delmi + (UserData.pin) + delmi + UserData.name + delmi + UserData.phone + delmi + to_string(UserData.account_balance));
 }
 
 // read file content and push it to vector of struct
@@ -92,7 +92,7 @@ vector<StUser> VectorThatHaveAllData(string path) {
 	vector<StUser> data;
 	fstream read;
 	read.open(path, ios::in); // read mode
-	if (read.is_open()) 
+	if (read.is_open())
 	{
 		string line = "";
 		StUser user;
@@ -103,7 +103,7 @@ vector<StUser> VectorThatHaveAllData(string path) {
 		}
 		read.close();
 	}
-	else 
+	else
 	{
 		screen_color(red);
 		cout << "\a\nCouldn't open the file!\n";
@@ -114,7 +114,7 @@ vector<StUser> VectorThatHaveAllData(string path) {
 
 
 //update current user
-void UpdateCurrentUser(StUser &CurrentUserToUpdate , vector<StUser>&VectorThatHaveAllData) {
+void UpdateCurrentUser(StUser& CurrentUserToUpdate, vector<StUser>& VectorThatHaveAllData) {
 
 	for (StUser& U : VectorThatHaveAllData) {
 		if (CurrentUserToUpdate.account_number == U.account_number) {
@@ -124,23 +124,29 @@ void UpdateCurrentUser(StUser &CurrentUserToUpdate , vector<StUser>&VectorThatHa
 	}
 }
 
-// write the edited vector on file again 
-void EditFile(vector<StUser> &VectorThatHaveAllData , string path) 
+// write the updated client on file  
+void EditFile(string NewLine, string path)
 {
-	// take the edited vector and push the data into file
+	// NewLine --> covert global var into struct then pass it
 
-	fstream write;
-	write.open(path, ios::out); // overwriting
+	fstream read;
+	read.open(path, ios::in); // update specifi line 
 
-	if (write.is_open())
+	if (read.is_open())
 	{
-		string line;
-		for (StUser& Vdata : VectorThatHaveAllData) {
+		string lineFromFile;
+		StUser FromFile;
+		StUser AfterUpdated=CurrentUser;
+		while(getline(read, lineFromFile))
+		{
+			FromFile = ConvertLineToRecord(lineFromFile); // convert each line into record
 
-			line = ConvertRecordToLine(Vdata);
-			write << line << endl;
+			if (FromFile.account_number == AfterUpdated.account_number) {
+				lineFromFile = NewLine;
+				break;
+			}
 		}
-		write.close();
+		read.close();
 	}
 	else
 	{
@@ -157,14 +163,7 @@ bool EnterY_N() {
 }
 
 bool IsAccountNumberExistInVector(StUser UserFromVectorThatHaveAllClients , StUser User) {
-
-	
-
-	if (UserFromVectorThatHaveAllClients.account_number == User.account_number) {
-		return true;
-	}
-	else return false; 
-	
+	return (UserFromVectorThatHaveAllClients.account_number == User.account_number);
 }
 
 bool ConfrimOperation(string OperationName) {
@@ -179,11 +178,11 @@ void DepositMainLogic(vector<StUser>& VectorThatHaveAllClients, int amount ) {
 	for (StUser& U : VectorThatHaveAllClients) {
 
 		if (IsAccountNumberExistInVector(U, CurrentUser) == true) {
-			U.account_balance += amount;
+			CurrentUser.account_balance += amount;
 			break;
 		}
 	}
-	EditFile(VectorThatHaveAllClients, path); // update file
+	EditFile(ConvertRecordToLine(CurrentUser), path); // update file
 	VectorThatHaveAllClients= VectorThatHaveAllData(path);//refresh vector 
 	UpdateCurrentUser(CurrentUser, VectorThatHaveAllClients);
 }
@@ -206,7 +205,7 @@ void ShowDepositScreen(vector<StUser>& VectorThatHaveAllClients) {
 
 
 // option [4]
-void CheckBalance(StUser CurentUserBalance) {
+void CheckBalance(StUser &CurentUserBalance) {
 	cout << "\n\n\t\t The User \"" << CurentUserBalance.name<<"\" 's account balance is: "<< CurentUserBalance.account_balance << endl;
 }
 
