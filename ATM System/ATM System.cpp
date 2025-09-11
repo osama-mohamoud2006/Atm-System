@@ -138,6 +138,21 @@ void EditFile(vector<StUser> VectorThatHaveAllData , string path)
 }
 
 
+
+
+//return true if found user 
+bool FindUserByAccountNumber(string account_number, StUser &currentUser , vector<StUser>&VectorThatHaveAllData) {
+
+	for (StUser& U : VectorThatHaveAllData)
+	{
+		if (U.account_number == account_number) {
+			currentUser = U;
+			return true;
+		}
+	}
+	return false;
+}
+
 void main_menu() {
 	system("cls");
 	cout << setw(5) << "\tWelcome to Atm System! ";
@@ -155,27 +170,33 @@ void main_menu() {
 
 }
 
-
-bool FindUserByAccountNumber(string account_number, StUser &currentUser , vector<StUser>&VectorThatHaveAllData) {
-
-	for (StUser& U : VectorThatHaveAllData)
-	{
-		if (U.account_number == account_number) {
-			currentUser = U;
-			return true;
-		}
-	}
-	return false;
-}
-
-bool IsAcccountNumberExist(string account_number , ) {
-
-	if(FindUserByAccountNumber(account_number, CurrentUser , ))
-
-}
-
-
-
 void login() {
 
+	system("cls");
+	screen_color(black);
+	vector<StUser> VectorThatHaveAllClients = VectorThatHaveAllData(path);
+	print_menu_option("Login");
+
+	bool check = false; 
+	do {
+
+		string AccountNumber = read_string("\nenter Account Number: ");
+		string Pin = read_string("\nenter Pin: ");
+
+		if (FindUserByAccountNumber(AccountNumber, CurrentUser, VectorThatHaveAllClients)) 
+		{
+			main_menu(); // call main menu normally 
+		}
+		else {
+			screen_color(red);
+			cout << "\nIncorrect password or user!\n\a";
+		}
+
+	} while (check == false);
+
+}
+
+int main() {
+	login();
+	return 0;
 }
