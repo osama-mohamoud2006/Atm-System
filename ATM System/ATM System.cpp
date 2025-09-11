@@ -140,8 +140,10 @@ void EditFile(vector<StUser> &VectorThatHaveAllData , string path)
 
 
 
-void CheckBalance() {
+void CheckBalance(StUser current_user) {
 
+	cout << "\n\n\t\t The User \"" << current_user.name<<"\" account balance is: "<< current_user.account_balance << endl;
+	
 }
 
 
