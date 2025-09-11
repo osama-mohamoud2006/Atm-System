@@ -153,13 +153,15 @@ bool FindUserByAccountNumber(string account_number, StUser &currentUser , vector
 	return false;
 }
 
+//check password and the account number 
 bool IsAccountNumberExist(string account_number, string Pin,StUser& currentUser, vector<StUser>& VectorThatHaveAllData) {
 
 	if (FindUserByAccountNumber(account_number, currentUser, VectorThatHaveAllData)) {
 
-		if (CurrentUser.pin == Pin) return true;
-		return false;
+		if (currentUser.pin == Pin) return true;
+		else return false; 
 	}
+	return false;
 }
 
 void main_menu() {
