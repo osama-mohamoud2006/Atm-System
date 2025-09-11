@@ -86,8 +86,56 @@ string ConvertRecordToLine(StUser UserData) {
 return (UserData.account_number + delmi + (UserData.pin) + delmi + UserData.name + delmi + UserData.phone + delmi + to_string(UserData.account_balance));
 }
 
-// read file content and push in
+// read file content and push it to vector of struct
+vector<StUser> VectorThatHaveAllData(string path) {
+	vector<StUser> data;
+	fstream read;
+	read.open(path, ios::in); // read mode
+	if (read.is_open()) 
+	{
+		string line = "";
+		StUser user;
+		while (getline(read, line)) {
 
+			user = ConvertLineToRecord(line);
+			data.push_back(user);
+		}
+		read.close();
+	}
+	else 
+	{
+		screen_color(red);
+		cout << "\a\nCouldn't open the file!\n";
+	}
+
+	return data;
+}
+
+// write the edited vector on file again 
+void EditFile(vector<StUser> VectorThatHaveAllData , string path) 
+{
+	// take the edited vector and push the data into file
+
+	fstream write;
+	write.open(path, ios::out); // overwriting
+
+	if (write.is_open())
+	{
+		string line;
+		for (StUser& Vdata : VectorThatHaveAllData) {
+
+			line = ConvertRecordToLine(Vdata);
+			write << line;
+		}
+		write.close();
+	}
+	else
+	{
+		screen_color(red);
+		cout << "\a\nCouldn't open the file!\n";
+	}
+
+}
 
 
 void main_menu() {
@@ -106,6 +154,27 @@ void main_menu() {
 
 
 }
+
+
+bool FindUserByAccountNumber(string account_number, StUser &currentUser , vector<StUser>&VectorThatHaveAllData) {
+
+	for (StUser& U : VectorThatHaveAllData)
+	{
+		if (U.account_number == account_number) {
+			currentUser = U;
+			return true;
+		}
+	}
+	return false;
+}
+
+bool IsAcccountNumberExist(string account_number , ) {
+
+	if(FindUserByAccountNumber(account_number, CurrentUser , ))
+
+}
+
+
 
 void login() {
 
