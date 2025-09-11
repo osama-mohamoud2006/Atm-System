@@ -18,7 +18,7 @@ int account_balance = 0;
 
 };
 struct StUser CurrentUser;
-enum enMainMenuOptions{QuickWithdraw=1 , NormalWithdraw=2 ,Dposit=3 , CheckBalance=4 ,Logout=5};
+enum enMainMenuOptions{QuickWithdraw=1 , NormalWithdraw=2 ,Dposit=3 , CheckBalance=4 ,Logout=5 , none=6};
 void login();
 const string path = "local db.text"; // Clients
 const string delmi = "#//#";
@@ -143,7 +143,7 @@ void EditFile(vector<StUser> &VectorThatHaveAllData , string path)
 
 
 
-void Logout() {
+void logout() {
 	login();
 }
 
@@ -176,7 +176,7 @@ void ImplementOptionAccordingToUserChoice(enMainMenuOptions Option) {
 
 	case enMainMenuOptions::Logout:
 		system("cls");
-		Logout();
+		logout();
 		break;
 	}
 }
@@ -202,14 +202,14 @@ void main_menu() {
 
 void Start() {
 
-	int choice = 0; 
+	enMainMenuOptions choice ;
 	do {
 	system("cls");
      main_menu(); // call main menu normally (print) 
-	 choice = enter_number_from_to(1, 5);
-	 ImplementOptionAccordingToUserChoice((enMainMenuOptions)choice);
+	 choice = (enMainMenuOptions)enter_number_from_to(1, 5);
+	 ImplementOptionAccordingToUserChoice(choice);
 
-	} while (0> choice || choice>5);
+	} while (choice== enMainMenuOptions::none);
 	
 }
 
