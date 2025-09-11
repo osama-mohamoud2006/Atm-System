@@ -112,7 +112,12 @@ vector<StUser> VectorThatHaveAllData(string path) {
 	return data;
 }
 
-
+// update the vector and file 
+void UpdateAll(vector<StUser> &VectorThatHaveAllClients ) {
+	EditFile(VectorThatHaveAllClients, path); // update file
+	VectorThatHaveAllClients = VectorThatHaveAllData(path);//refresh vector 
+	UpdateCurrentUser(CurrentUser, VectorThatHaveAllClients);//update the global var
+}
 //update current user
 void UpdateCurrentUser(StUser &CurrentUserToUpdate , vector<StUser>&VectorThatHaveAllData) {
 
@@ -178,7 +183,7 @@ void DepositMainLogic(vector<StUser>& VectorThatHaveAllClients, int amount ) {
 	}
 	EditFile(VectorThatHaveAllClients, path); // update file
 	VectorThatHaveAllClients= VectorThatHaveAllData(path);//refresh vector 
-	UpdateCurrentUser(CurrentUser, VectorThatHaveAllClients);
+	UpdateCurrentUser(CurrentUser, VectorThatHaveAllClients);//update the global var
 }
 
 // option [3]
@@ -188,7 +193,8 @@ void ShowDepositScreen(vector<StUser>& VectorThatHaveAllClients) {
 
 	int AmountToDeposit = enter_postive_number("\nEnter a positive Deposit Amount: ");
 
-	if (ConfrimOperation("Deposit")) {
+	if (ConfrimOperation("Deposit")) 
+	{
 		DepositMainLogic(VectorThatHaveAllClients, AmountToDeposit);
 		cout << "\nDone Successfully. " << "Now balance is: " << CurrentUser.account_balance << endl;
 	}
@@ -215,7 +221,13 @@ void ImplementOptionAccordingToUserChoice(enMainMenuOptions Option ,vector<StUse
 	switch (Option) {
 	case enMainMenuOptions::eQuickWithdraw:
 		system("cls");
-		cout << "\nwill be QuickWithdraw soon!\n";
+		/*cout << "\nwill be QuickWithdraw soon!\n";*/
+
+		for (StUser U : VectorThatHaveAllClients) {
+			if (U.account_number == CurrentUser.account_number) cout << "For testing " << U.account_balance << endl;
+		}
+
+
 		back_to_menu();
 		break;
 
