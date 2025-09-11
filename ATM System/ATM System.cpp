@@ -112,14 +112,8 @@ vector<StUser> VectorThatHaveAllData(string path) {
 	return data;
 }
 
-// update the vector and file 
-void UpdateAll(vector<StUser> &VectorThatHaveAllClients ) {
-	EditFile(VectorThatHaveAllClients, path); // update file
-	VectorThatHaveAllClients = VectorThatHaveAllData(path);//refresh vector 
-	UpdateCurrentUser(CurrentUser, VectorThatHaveAllClients);//update the global var
-}
 //update current user
-void UpdateCurrentUser(StUser &CurrentUserToUpdate , vector<StUser>&VectorThatHaveAllData) {
+void UpdateCurrentUser(StUser& CurrentUserToUpdate, vector<StUser>& VectorThatHaveAllData) {
 
 	for (StUser& U : VectorThatHaveAllData) {
 		if (CurrentUserToUpdate.account_number == U.account_number) {
@@ -128,6 +122,7 @@ void UpdateCurrentUser(StUser &CurrentUserToUpdate , vector<StUser>&VectorThatHa
 		}
 	}
 }
+
 
 // write the edited vector on file again 
 void EditFile(vector<StUser> &VectorThatHaveAllData , string path) 
@@ -155,6 +150,15 @@ void EditFile(vector<StUser> &VectorThatHaveAllData , string path)
 
 }
 
+
+// update the vector and file 
+void UpdateAll(vector<StUser>& VectorThatHaveAllClients) {
+	EditFile(VectorThatHaveAllClients, path); // update file
+	VectorThatHaveAllClients = VectorThatHaveAllData(path);//refresh vector 
+	UpdateCurrentUser(CurrentUser, VectorThatHaveAllClients);//update the global var
+}
+
+
 bool EnterY_N() {
 	char c;
 	cin >> c;
@@ -181,9 +185,11 @@ void DepositMainLogic(vector<StUser>& VectorThatHaveAllClients, int amount ) {
 			break;
 		}
 	}
-	EditFile(VectorThatHaveAllClients, path); // update file
-	VectorThatHaveAllClients= VectorThatHaveAllData(path);//refresh vector 
-	UpdateCurrentUser(CurrentUser, VectorThatHaveAllClients);//update the global var
+
+	UpdateAll(VectorThatHaveAllClients);
+	//EditFile(VectorThatHaveAllClients, path); // update file
+	//VectorThatHaveAllClients= VectorThatHaveAllData(path);//refresh vector 
+	//UpdateCurrentUser(CurrentUser, VectorThatHaveAllClients);//update the global var
 }
 
 // option [3]
