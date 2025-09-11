@@ -56,12 +56,37 @@ vector<string> SplitString(string LineOfData , string delmi= "#//#") {
 
 	if(LineOfData!="")  res.push_back(LineOfData);
 
-	return 
+	return res;
 }
 
+// will convert the string into data in struct 
+StUser ConvertLineToRecord(string LineOfData) {
+	
+	
+	if (LineOfData == "") {
+		screen_color(red);
+		cout << "\n\aError !" << endl;
+		exit(0);
+	}
 
+	StUser user;
+	vector<string> DataSplited= SplitString(LineOfData,delmi);
 
+	user.account_number = DataSplited.at(0);//--> i care about it
+	user.pin = DataSplited.at(1);//--> i care about it
+	user.name = DataSplited.at(2);
+	user.phone = DataSplited.at(3);
+	user.account_balance =stoi(DataSplited.at(4)); //--> i care about it
 
+	return user; 
+}
+
+// convert struct to line(string) 
+string ConvertRecordToLine(StUser UserData) {
+return (UserData.account_number + delmi + (UserData.pin) + delmi + UserData.name + delmi + UserData.phone + delmi + to_string(UserData.account_balance));
+}
+
+// read file content and push in
 
 
 
