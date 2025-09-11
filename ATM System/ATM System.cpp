@@ -114,11 +114,12 @@ vector<StUser> VectorThatHaveAllData(string path) {
 
 
 //update current user
-void UpdateCurrentUser(StUser CurrentUserToUpdate , vector<StUser>&VectorThatHaveAllData) {
+void UpdateCurrentUser(StUser &CurrentUserToUpdate , vector<StUser>&VectorThatHaveAllData) {
 
 	for (StUser& U : VectorThatHaveAllData) {
 		if (CurrentUserToUpdate.account_number == U.account_number) {
 			CurrentUserToUpdate = U;
+			break;
 		}
 	}
 }
@@ -187,6 +188,7 @@ void DepositMainLogic(vector<StUser>& VectorThatHaveAllClients, int amount ) {
 	UpdateCurrentUser(CurrentUser, VectorThatHaveAllClients);
 }
 
+// option [3]
 void ShowDepositScreen(vector<StUser>& VectorThatHaveAllClients) {
 
 	print_menu_option("Deposit Screen");
@@ -203,16 +205,12 @@ void ShowDepositScreen(vector<StUser>& VectorThatHaveAllClients) {
 }
 
 
-
-void CheckBalance(vector<StUser>& VectorThatHaveAllClients) {
-
-
-
-	//cout << "\n\n\t\t The User \"" << current_user.name<<"\" 's account balance is: "<< current_user.account_balance << endl;
-	
+// option [4]
+void CheckBalance(StUser CurentUserBalance) {
+	cout << "\n\n\t\t The User \"" << CurentUserBalance.name<<"\" 's account balance is: "<< CurentUserBalance.account_balance << endl;
 }
 
-
+// option [5]
 void logout() {
 	login();
 }
@@ -242,7 +240,7 @@ void ImplementOptionAccordingToUserChoice(enMainMenuOptions Option ,vector<StUse
 
 	case enMainMenuOptions::eCheckBalance:
 		system("cls");
-		//CheckBalance( CurrentUser);
+		CheckBalance( CurrentUser);
 		back_to_menu();
 		break;
 
