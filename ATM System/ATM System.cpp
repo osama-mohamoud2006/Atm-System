@@ -17,16 +17,14 @@ string phone = " ";
 int account_balance = 0;
 
 };
-
 struct StUser CurrentUser;
-
 enum enMainMenuOptions{QuicWithdraw=1 , NormalWithdraw=2 ,Dposit=3 , CheckBalance=4 ,Logout=5};
-
 void login();
 const string path = "local db.text"; // Clients
 const string delmi = "#//#";
+///////////////////////////////////////////////////////////////////////////
 
-// things to use in menu option 
+// things to use in  options
 void back_to_menu(string TextAppearWhenYouBack = "press any key to back to main menu !") {
 	screen_color(black);
 	cout << "\033[1;31m";
@@ -41,7 +39,25 @@ void print_menu_option(string option_name) {
 	cout << "\n_________________________________________________\n";
 }
 
+vector<string> SplitString(string LineOfData , string delmi= "#//#") {
 
+	vector<string> res; 
+	
+	short pos;
+	string sword;
+
+	while ((pos = LineOfData.find(delmi)) != string::npos) {
+
+		sword = LineOfData.substr(0, pos);
+		if (sword != "") res.push_back(sword);
+
+		LineOfData.erase(0, pos + delmi.length());
+	}
+
+	if(LineOfData!="")  res.push_back(LineOfData);
+
+	return 
+}
 
 
 
@@ -63,5 +79,9 @@ void main_menu() {
 	cout << "\n_____________________________________________________\n\n";
 	cout << "Please enter the option you want: ";
 
+
+}
+
+void login() {
 
 }
