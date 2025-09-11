@@ -139,30 +139,13 @@ void EditFile(vector<StUser> &VectorThatHaveAllData , string path)
 
 
 
+void ImplementOptionAccordingToUserChoice(enMainMenuOptions Option) {
 
-//return true if found user 
-bool FindUserByAccountNumber(string account_number, StUser &currentUser , vector<StUser>&VectorThatHaveAllData) {
+	switch () {
 
-	for (StUser& U : VectorThatHaveAllData)
-	{
-		if (U.account_number == account_number) {
-			currentUser = U;
-			return true;
-		}
 	}
-	return false;
 }
 
-//check password and the account number 
-bool IsUserAuthenticated(string account_number, string Pin,StUser& currentUser, vector<StUser>& VectorThatHaveAllData) {
-
-	if (FindUserByAccountNumber(account_number, currentUser, VectorThatHaveAllData)) {
-
-		if (currentUser.pin == Pin) return true;
-		else return false; 
-	}
-	return false;
-}
 
 void main_menu() {
 	system("cls");
@@ -183,7 +166,40 @@ void main_menu() {
 }
 
 void Start() {
-	main_menu(); // call main menu normally 
+
+	do {
+
+     main_menu(); // call main menu normally 
+
+
+	} while ("#");
+	
+}
+
+
+
+//return true if found user 
+bool FindUserByAccountNumber(string account_number, StUser& currentUser, vector<StUser>& VectorThatHaveAllData) {
+
+	for (StUser& U : VectorThatHaveAllData)
+	{
+		if (U.account_number == account_number) {
+			currentUser = U;
+			return true;
+		}
+	}
+	return false;
+}
+
+//check password and the account number 
+bool IsUserAuthenticated(string account_number, string Pin, StUser& currentUser, vector<StUser>& VectorThatHaveAllData) {
+
+	if (FindUserByAccountNumber(account_number, currentUser, VectorThatHaveAllData)) {
+
+		if (currentUser.pin == Pin) return true;
+		else return false;
+	}
+	return false;
 }
 
 void login() {
