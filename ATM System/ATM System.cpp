@@ -153,8 +153,18 @@ bool FindUserByAccountNumber(string account_number, StUser &currentUser , vector
 	return false;
 }
 
+bool IsAccountNumberExist(string account_number, string Pin,StUser& currentUser, vector<StUser>& VectorThatHaveAllData) {
+
+	if (FindUserByAccountNumber(account_number, currentUser, VectorThatHaveAllData)) {
+
+		if (CurrentUser.pin == Pin) return true;
+		return false;
+	}
+}
+
 void main_menu() {
 	system("cls");
+	screen_color(black);
 	cout << setw(5) << "\tWelcome to Atm System! ";
 	cout << "\n_____________________________________________________\n\n";
 	cout << setw(5) << "please enter the number of the option you want: \n" << endl;
@@ -172,20 +182,20 @@ void main_menu() {
 
 void login() {
 
-	system("cls");
-	screen_color(black);
 	vector<StUser> VectorThatHaveAllClients = VectorThatHaveAllData(path);
-	print_menu_option("Login");
 
 	bool check = false; 
 	do {
-
+		system("cls");
+		screen_color(black);
+		print_menu_option("Login");
 		string AccountNumber = read_string("\nenter Account Number: ");
 		string Pin = read_string("\nenter Pin: ");
 
-		if (FindUserByAccountNumber(AccountNumber, CurrentUser, VectorThatHaveAllClients)) 
+		if (IsAccountNumberExist(AccountNumber,Pin,CurrentUser, VectorThatHaveAllClients))
 		{
 			main_menu(); // call main menu normally 
+			check = true;
 		}
 		else {
 			screen_color(red);
