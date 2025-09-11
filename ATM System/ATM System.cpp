@@ -206,7 +206,7 @@ void Start() {
 	do {
 	system("cls");
      main_menu(); // call main menu normally (print) 
-	 choice = (enMainMenuOptions)enter_number_from_to(1, 5);
+	 choice = (enMainMenuOptions)enter_postive_number("");
 	 ImplementOptionAccordingToUserChoice(choice);
 
 	} while (choice== enMainMenuOptions::none);
