@@ -209,7 +209,7 @@ void Start() {
 	 choice = (enMainMenuOptions)enter_postive_number("");
 	 ImplementOptionAccordingToUserChoice(choice);
 
-	} while (choice== enMainMenuOptions::none);
+	} while (choice!= enMainMenuOptions::Logout);
 	
 }
 
