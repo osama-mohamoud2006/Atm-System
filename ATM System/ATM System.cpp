@@ -18,7 +18,7 @@ int account_balance = 0;
 
 };
 struct StUser CurrentUser;
-enum enMainMenuOptions{QuickWithdraw=1 , NormalWithdraw=2 ,Dposit=3 , CheckBalance=4 ,Logout=5 , none=6};
+enum enMainMenuOptions{eQuickWithdraw=1 , eNormalWithdraw=2 ,eDposit=3 , eCheckBalance=4 ,eLogout=5 };
 void login();
 const string path = "local db.text"; // Clients
 const string delmi = "#//#";
@@ -140,48 +140,50 @@ void EditFile(vector<StUser> &VectorThatHaveAllData , string path)
 
 
 
+void CheckBalance() {
 
+}
 
 
 void logout() {
 	login();
 }
 
-void ImplementOptionAccordingToUserChoice(enMainMenuOptions Option) {
+
+
+void ImplementOptionAccordingToUserChoice(enMainMenuOptions Option ,vector<StUser>& VectorThatHaveAllClients) {
 
 	switch (Option) {
-	case enMainMenuOptions::QuickWithdraw:
+	case enMainMenuOptions::eQuickWithdraw:
 		system("cls");
 		cout << "\nwill be QuickWithdraw soon!\n";
 		back_to_menu();
 		break;
 
-	case enMainMenuOptions::NormalWithdraw:
+	case enMainMenuOptions::eNormalWithdraw:
 		system("cls");
 		cout << "\nwill be Normal Withdraw soon!\n";
 		back_to_menu();
 		break;
 
-	case enMainMenuOptions::Dposit:
+	case enMainMenuOptions::eDposit:
 		system("cls");
 		cout << "\nwill be Normal Deposit soon!\n";
 		back_to_menu();
 		break;
 
-	case enMainMenuOptions::CheckBalance:
+	case enMainMenuOptions::eCheckBalance:
 		system("cls");
 		cout << "\nwill be Check Balance  Deposit soon!\n";
 		back_to_menu();
 		break;
 
-	case enMainMenuOptions::Logout:
+	case enMainMenuOptions::eLogout:
 		system("cls");
 		logout();
 		break;
 	}
 }
-
-
 void main_menu() {
 	system("cls");
 	screen_color(black);
@@ -200,20 +202,18 @@ void main_menu() {
 
 }
 
-void Start() {
+void Start(vector<StUser> &VectorThatHaveAllClients) {
 
 	enMainMenuOptions choice ;
 	do {
 	system("cls");
      main_menu(); // call main menu normally (print) 
 	 choice = (enMainMenuOptions)enter_postive_number("");
-	 ImplementOptionAccordingToUserChoice(choice);
+	 ImplementOptionAccordingToUserChoice(choice, VectorThatHaveAllClients);
 
-	} while (choice!= enMainMenuOptions::Logout);
+	} while (choice!= enMainMenuOptions::eLogout);
 	
 }
-
-
 
 //return true if found user 
 bool FindUserByAccountNumber(string account_number, StUser& currentUser, vector<StUser>& VectorThatHaveAllData) {
@@ -253,7 +253,7 @@ void login() {
 
 		if (IsUserAuthenticated(AccountNumber,Pin,CurrentUser, VectorThatHaveAllClients))
 		{
-			Start(); // start the program after logining in
+			Start(VectorThatHaveAllClients); // start the program after logining in
 			check = true;
 		}
 		else {
