@@ -113,6 +113,16 @@ vector<StUser> VectorThatHaveAllData(string path) {
 }
 
 
+//update current user
+void UpdateCurrentUser(StUser CurrentUserToUpdate , vector<StUser>&VectorThatHaveAllData) {
+
+	for (StUser& U : VectorThatHaveAllData) {
+		if (CurrentUserToUpdate.account_number == U.account_number) {
+			CurrentUserToUpdate = U;
+		}
+	}
+}
+
 // write the edited vector on file again 
 void EditFile(vector<StUser> &VectorThatHaveAllData , string path) 
 {
@@ -158,7 +168,7 @@ bool IsAccountNumberExistInVector(StUser UserFromVectorThatHaveAllClients , StUs
 
 bool ConfrimOperation(string OperationName) {
 
-	cout << "Are you sure you want to perform " << OperationName << " [y],[n]: ";
+	cout << "\n\nAre you sure you want to perform " << OperationName << " [y],[n]: ";
 	if (EnterY_N()) return true; // return true if it is true
 	else return false; 
 }
@@ -173,7 +183,8 @@ void DepositMainLogic(vector<StUser>& VectorThatHaveAllClients, int amount ) {
 		}
 	}
 	EditFile(VectorThatHaveAllClients, path); // update file
-	VectorThatHaveAllData(path);//refresh vector 
+	VectorThatHaveAllClients= VectorThatHaveAllData(path);//refresh vector 
+	UpdateCurrentUser(CurrentUser, VectorThatHaveAllClients);
 }
 
 void ShowDepositScreen(vector<StUser>& VectorThatHaveAllClients) {
