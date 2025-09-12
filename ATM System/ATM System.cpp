@@ -169,15 +169,10 @@ bool IsAccountNumberExistInVector(StUser UserFromVectorThatHaveAllClients , StUs
 }
 
 
-bool ConfrimOperation(string OperationName, bool ContinueWithDraw = false) {
-
-	if (ContinueWithDraw == true) return false;
-
-	else {
-		cout << "\n\nAre you sure you want to perform " << OperationName << " [y],[n]: ";
-		if (EnterY_N()) return true; // return true if it is true
-		else return false;
-	}
+bool ConfrimOperation(string OperationName) {
+cout << "\n\nAre you sure you want to perform " << OperationName << " [y],[n]: ";
+if (EnterY_N()) return true; // return true if it is true
+else return false;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////
@@ -196,82 +191,96 @@ void QuickWithDrawMainMenu() {
 	cout << "\n=======================================\n";
 	cout << "\nYour balance is: " << CurrentUser.account_balance << endl;
 }
-void QuickWithDrawMainLogic(vector<StUser>& VectorThatHaveAllClients, int AmountOption, bool &ContinueWithDraw)
+void QuickWithDrawMainLogic(vector<StUser>& VectorThatHaveAllClients, int AmountOption)
 {
 	for (StUser& U : VectorThatHaveAllClients) {
 
 		if (U.account_number == CurrentUser.account_number) {
-
-			if (U.account_balance < AmountOption) {
-				cout << "\n\aThe amount exceeds your balance!\n\n";
-				ContinueWithDraw = false;
-				break; // the amount is bigger than actual balance 
-			}
-
-			else 
-			{
 				U.account_balance -= AmountOption;
-				ContinueWithDraw = true;
 				break; 
-			}
 		}
 	}
 
 	UpdateAll(VectorThatHaveAllClients);
 }
-void ImplementOptionInQuickDraw(EnQuickWithdrawOption noption , vector<StUser>& VectorThatHaveAllClients, bool& ContinueWithDraw) {
+
+void ImplementOptionInQuickDraw(EnQuickWithdrawOption noption , vector<StUser>& VectorThatHaveAllClients) {
 
 	switch (noption) {
 	case EnQuickWithdrawOption::Twenty:
-		QuickWithDrawMainLogic(VectorThatHaveAllClients, 20, ContinueWithDraw);
+		QuickWithDrawMainLogic(VectorThatHaveAllClients, 20);
 		break;
 
 	case EnQuickWithdrawOption::Fifty:
-		QuickWithDrawMainLogic(VectorThatHaveAllClients, 50, ContinueWithDraw);
+		QuickWithDrawMainLogic(VectorThatHaveAllClients, 50);
 		break;
 
 	case EnQuickWithdrawOption::OneHundered:
-		QuickWithDrawMainLogic(VectorThatHaveAllClients, 100, ContinueWithDraw);
+		QuickWithDrawMainLogic(VectorThatHaveAllClients, 100);
 		break;
 
 	case EnQuickWithdrawOption::TwoHundered:
-		QuickWithDrawMainLogic(VectorThatHaveAllClients, 200, ContinueWithDraw);
+		QuickWithDrawMainLogic(VectorThatHaveAllClients, 200);
 		break;
 
 	case EnQuickWithdrawOption::FourHunderd:
-		QuickWithDrawMainLogic(VectorThatHaveAllClients, 400, ContinueWithDraw);
+		QuickWithDrawMainLogic(VectorThatHaveAllClients, 400);
 		break;
 
 	case EnQuickWithdrawOption::SixHundered:
-		QuickWithDrawMainLogic(VectorThatHaveAllClients, 600,ContinueWithDraw);
+		QuickWithDrawMainLogic(VectorThatHaveAllClients, 600);
 		break;
 
 	case EnQuickWithdrawOption::EigthHundered:
-		QuickWithDrawMainLogic(VectorThatHaveAllClients, 800, ContinueWithDraw);
+		QuickWithDrawMainLogic(VectorThatHaveAllClients, 800);
 		break;
 
 	case EnQuickWithdrawOption::OneThousand:
-		QuickWithDrawMainLogic(VectorThatHaveAllClients, 1000, ContinueWithDraw);
+		QuickWithDrawMainLogic(VectorThatHaveAllClients, 1000);
 		break;
 
 	default:
-		QuickWithDrawMainLogic(VectorThatHaveAllClients, 0, ContinueWithDraw);
+		QuickWithDrawMainLogic(VectorThatHaveAllClients, 0);
 		break;
 	}
 
 }
+
+
+
+
+bool IsAmountTrueToStartQuickWithdraw(vector<StUser>& VectorThatHaveAllClients , EnQuickWithdrawOption AmountOption) {
+
+	for (StUser& U : VectorThatHaveAllClients) {
+
+		if (U.account_number == CurrentUser.account_number) {
+
+			if (U.account_balance < (AmountOption)) {
+				cout << "\n\aThe amount exceeds your balance!\n\n";
+				return true;; // the amount is bigger than actual balance 
+			}
+
+		}
+	}
+	return false;
+}
+
 //option[1]
 void QuickWithdrawScreen(vector<StUser>& VectorThatHaveAllClients) {
-	bool ContinueWithDraw;
+
 	QuickWithDrawMainMenu(); // print menu  
 	cout << "\nChoose What To Withdraw From [1] To [8]: ";
+
 	EnQuickWithdrawOption ChoiceOption = (EnQuickWithdrawOption)enter_number_from_to(1,8);
 
-	ImplementOptionInQuickDraw(ChoiceOption, VectorThatHaveAllClients , ContinueWithDraw);
-	if (ContinueWithDraw == true)
+	
+	if (IsAmountTrueToStartQuickWithdraw(VectorThatHaveAllClients, ChoiceOption) == true)
 	{
-      if (ConfrimOperation("Transaction"))
-		cout << "\n\nDone Successfully , your balance is: " << CurrentUser.account_balance << endl << endl;
+		if (ConfrimOperation("Transaction")) {
+			ImplementOptionInQuickDraw(ChoiceOption, VectorThatHaveAllClients);
+			cout << "\n\nDone Successfully , your balance is: " << CurrentUser.account_balance << endl << endl;
+	       }
+		
 	}
 
 }
@@ -325,6 +334,7 @@ void ShowNoramlWithDrawScreen(vector<StUser>& VectorThatHaveAllClients ) {
 	{
 
 		if (ConfrimOperation("withdraw")) {
+
 			NormalWithDrawLogic(VectorThatHaveAllClients, amount);
 			cout << "\nDone Successfully , Now Balance is : " << CurrentUser.account_balance << endl;
 		}
