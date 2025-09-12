@@ -249,15 +249,15 @@ void ImplementOptionInQuickDraw(EnQuickWithdrawOption noption , vector<StUser>& 
 
 
 
-bool IsAmountTrueToStartQuickWithdraw(vector<StUser>& VectorThatHaveAllClients , EnQuickWithdrawOption AmountOption) {
+bool IsAmountTrueToStartQuickWithdraw(vector<StUser>& VectorThatHaveAllClients , int Amount) {
 
 	for (StUser& U : VectorThatHaveAllClients) {
 
 		if (U.account_number == CurrentUser.account_number) {
 
-			if (U.account_balance < (AmountOption)) {
+			if (U.account_balance < (Amount)) {
 				cout << "\n\aThe amount exceeds your balance!\n\n";
-				return true;; // the amount is bigger than actual balance 
+				return true; // the amount is bigger than actual balance 
 			}
 
 		}
@@ -271,14 +271,15 @@ void QuickWithdrawScreen(vector<StUser>& VectorThatHaveAllClients) {
 	QuickWithDrawMainMenu(); // print menu  
 	cout << "\nChoose What To Withdraw From [1] To [8]: ";
 
-	EnQuickWithdrawOption ChoiceOption = (EnQuickWithdrawOption)enter_number_from_to(1,8);
+	int ChoiceOption = enter_number_from_to(1, 8);
 
-	
-	if (IsAmountTrueToStartQuickWithdraw(VectorThatHaveAllClients, ChoiceOption) == true)
+	if (IsAmountTrueToStartQuickWithdraw(VectorThatHaveAllClients, ChoiceOption))
 	{
 		if (ConfrimOperation("Transaction")) {
-			ImplementOptionInQuickDraw(ChoiceOption, VectorThatHaveAllClients);
+
+			ImplementOptionInQuickDraw((EnQuickWithdrawOption)ChoiceOption, VectorThatHaveAllClients);
 			cout << "\n\nDone Successfully , your balance is: " << CurrentUser.account_balance << endl << endl;
+
 	       }
 		
 	}
