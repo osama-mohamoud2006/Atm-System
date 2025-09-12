@@ -84,7 +84,7 @@ Note: Update the include path for `AllStuff.h` if it’s located elsewhere.
   - Check Balance: View current balance.
   - Logout: Return to user login screen.
   
-Press any key to return to menus after  Any operation.
+Press any key to return to menu after Any operation.
 
 ---
 
