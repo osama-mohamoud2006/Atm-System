@@ -78,10 +78,10 @@ Note: Update the include path for `AllStuff.h` if it’s located elsewhere.
 ### User Transactions
 - After user log in with account number and PIN.
 - Main menu (options 1-5):
-  - Quick Withdraw: Select predefined amounts; validates balance and admin permissions.
-  - Normal Withdraw: Enter custom amount (multiple of 5); checks balance and permissions.
-  - Deposit: Add positive amount; confirms with admin permissions.
-  - Check Balance: View current balance (permission-checked).
+  - Quick Withdraw: Select predefined amounts; validates balance.
+  - Normal Withdraw: Enter custom amount (multiple of 5); checks balance.
+  - Deposit: Add positive amount.
+  - Check Balance: View current balance.
   - Logout: Return to user login screen.
   
 Press any key to return to menus after  Any operation.
