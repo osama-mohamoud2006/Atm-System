@@ -195,8 +195,57 @@ void DepositMainLogic(vector<StUser>& VectorThatHaveAllClients, int amount ) {
 }
 
 
+bool EnterCorrectAmountToWithdraw( int &amount) {
+
+	int AmountToWithDraw = 0;
+	AmountToWithDraw = enter_postive_number("\nEnter number multiple of 5's: ");
+
+	if ( AmountToWithDraw > CurrentUser.account_balance)
+	{
+		screen_color(red);
+		cout << "\a\n\n The amount exceed you balance ";
+		return false; 
+	}
+
+	while ( !(AmountToWithDraw % 5 != 0) ) { // multple of 5
+
+		// reinput again 
+		AmountToWithDraw = enter_postive_number("\a\nEnter number multiple of 5's: ");
+		
+	 }
+	
+	amount = AmountToWithDraw;
+	return true; 
+
+}
+
+void NormalWithDrawLogic(vector<StUser>& VectorThatHaveAllClients, int amount) {
+
+	for (StUser& U : VectorThatHaveAllClients)
+	{
+		if (IsAccountNumberExistInVector(U,CurrentUser)) { // if found the client in vector
+			U.account_balance -= amount;
+			break;
+
+		}
+	}
+
+	UpdateAll(VectorThatHaveAllClients); 
+}
+
 //option[2]
-void ShowNoramlWithDrawScreen() {
+void ShowNoramlWithDrawScreen(vector<StUser>& VectorThatHaveAllClients ) {
+
+	print_menu_option("Normal Withdraw Screen");
+
+	int amount = 0; 
+	if (EnterCorrectAmountToWithdraw(amount)) // if the number isn't exceed account balance and it is multiple of 5
+	{
+
+		if (ConfrimOperation("\nAre you Sure you want to perform this withdraw [y],[n]:  ")) {
+			NormalWithDrawLogic(VectorThatHaveAllClients, amount);
+		}
+	}
 
 }
 
@@ -242,7 +291,7 @@ void ImplementOptionAccordingToUserChoice(enMainMenuOptions Option ,vector<StUse
 
 	case enMainMenuOptions::eNormalWithdraw:
 		system("cls");
-		cout << "\nwill be Normal Withdraw soon!\n";
+		ShowNoramlWithDrawScreen(VectorThatHaveAllClients);
 		back_to_menu();
 		break;
 
