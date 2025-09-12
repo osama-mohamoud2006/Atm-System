@@ -3,7 +3,7 @@ E:\projects\my library\logic_stuff.h(117,14): warning C4267: 'initializing': con
   (compiling source file 'ATM%20System.cpp')
   
 E:\projects\c++ course\08 - Algorithms & Problem Solving Level 4\Project 2\ATM System\ATM System.cpp(50,31): warning C4267: '=': conversion from 'size_t' to 'short', possible loss of data
-E:\projects\c++ course\08 - Algorithms & Problem Solving Level 4\Project 2\ATM System\ATM System.cpp(207,41): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-E:\projects\c++ course\08 - Algorithms & Problem Solving Level 4\Project 2\ATM System\ATM System.cpp(220,42): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-E:\projects\c++ course\08 - Algorithms & Problem Solving Level 4\Project 2\ATM System\ATM System.cpp(280,22): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+E:\projects\c++ course\08 - Algorithms & Problem Solving Level 4\Project 2\ATM System\ATM System.cpp(278,41): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+E:\projects\c++ course\08 - Algorithms & Problem Solving Level 4\Project 2\ATM System\ATM System.cpp(291,42): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+E:\projects\c++ course\08 - Algorithms & Problem Solving Level 4\Project 2\ATM System\ATM System.cpp(351,22): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
   ATM System.vcxproj -> E:\projects\c++ course\08 - Algorithms & Problem Solving Level 4\Project 2\ATM System\x64\Debug\ATM System.exe
