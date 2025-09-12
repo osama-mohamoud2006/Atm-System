@@ -183,18 +183,91 @@ enum EnQuickWithdrawOption{Twenty=1 , Fifty=2, OneHundered=3 , TwoHundered=4 , F
 void QuickWithDrawMainMenu() {
 
 	print_menu_option("Quick Withdraw");
-	cout << "\n\t" << setw(7) << "[1] 20" << setw(10) << "[2] 50" << endl;
-	cout << "\n\t" << setw(7) << "[3] 100" << setw(10) << "[4] 200" << endl;
-	cout << "\n\t" << setw(7) << "[5] 400" << setw(10) << "[6] 600" << endl;
-	cout << "\n\t" << setw(7) << "[7] 800" << setw(10) << "[8] 1000" << endl;
+	screen_color(black);
+	cout << "\n" << setw(9) << "[1] 20" << setw(15) << "[2] 50" << endl;
+	cout << "\n" << setw(10) << "[3] 100" << setw(15) << "[4] 200" << endl;
+	cout << "\n" << setw(10) << "[5] 400" << setw(15) << "[6] 600" << endl;
+	cout << "\n" << setw(10) << "[7] 800" << setw(16) << "[8] 1000" << endl;
+	cout << "=======================================\n";
+	cout << "\nYour balance is: " << CurrentUser.account_balance << endl;
 }
 
+void QuickWithDrawMainLogic(vector<StUser>& VectorThatHaveAllClients , int AmountOption) 
+{
+	for (StUser& U : VectorThatHaveAllClients) {
 
+		if (U.account_number == CurrentUser.account_number) {
+
+			if (U.account_balance < AmountOption) {
+				cout << "\n\aThe amount exceeds your balance!\n\n";
+				return; // the amount is bigger than actual balance 
+			}
+
+			else 
+			{
+				U.account_balance -= AmountOption;
+				break; 
+			}
+		}
+	}
+
+	UpdateAll(VectorThatHaveAllClients);
+}
+
+void ImplementOptionInQuickDraw(EnQuickWithdrawOption noption , vector<StUser>& VectorThatHaveAllClients) {
+
+	switch (noption) {
+	case EnQuickWithdrawOption::Twenty:
+		QuickWithDrawMainLogic(VectorThatHaveAllClients, 20);
+		break;
+
+	case EnQuickWithdrawOption::Fifty:
+		QuickWithDrawMainLogic(VectorThatHaveAllClients, 50);
+		break;
+
+	case EnQuickWithdrawOption::OneThousand:
+		QuickWithDrawMainLogic(VectorThatHaveAllClients, 100);
+		break;
+
+	case EnQuickWithdrawOption::TwoHundered:
+		QuickWithDrawMainLogic(VectorThatHaveAllClients, 200);
+		break;
+
+	case EnQuickWithdrawOption::FourHunderd:
+		QuickWithDrawMainLogic(VectorThatHaveAllClients, 400);
+		break;
+
+	case EnQuickWithdrawOption::SixHundered:
+		QuickWithDrawMainLogic(VectorThatHaveAllClients, 600);
+		break;
+
+	case EnQuickWithdrawOption::EigthHundered:
+		QuickWithDrawMainLogic(VectorThatHaveAllClients, 800);
+		break;
+
+	case EnQuickWithdrawOption::OneHundered:
+		QuickWithDrawMainLogic(VectorThatHaveAllClients, 1000);
+		break;
+
+	default:
+		QuickWithDrawMainLogic(VectorThatHaveAllClients, 0);
+		break;
+	}
+
+}
 
 //option[1]
-void QuickWithdraw(vector<StUser>& VectorThatHaveAllClients) {
+void QuickWithdrawScreen(vector<StUser>& VectorThatHaveAllClients) {
 
-	cout << "\nYour balance is: " << CurrentUser.account_balance << endl;
+	QuickWithDrawMainMenu(); // print menu 
+	EnQuickWithdrawOption ChoiceOption = (EnQuickWithdrawOption)enter_postive_number("\nChoose What To Withdraw From [1] To [8]: ");
+
+	if (ConfrimOperation("Transaction"))
+	{
+
+		ImplementOptionInQuickDraw(ChoiceOption, VectorThatHaveAllClients);
+		cout << "\n\nDone Successfully , your balance is: " << CurrentUser.account_balance << endl << endl;
+	}
 
 }
 
@@ -302,7 +375,7 @@ void ImplementOptionAccordingToUserChoice(enMainMenuOptions Option ,vector<StUse
 	switch (Option) {
 	case enMainMenuOptions::eQuickWithdraw:
 		system("cls");
-		cout << "\nwill be QuickWithdraw soon!\n";
+		QuickWithdrawScreen(VectorThatHaveAllClients);
 		back_to_menu();
 		break;
 
@@ -412,7 +485,7 @@ void login() {
 }
 
 int main() {
-	QuickWithDrawMainMenu();
-	//login();
+
+	login();
 	return 0;
 }
