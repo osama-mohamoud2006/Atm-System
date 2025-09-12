@@ -158,7 +158,6 @@ void UpdateAll(vector<StUser>& VectorThatHaveAllClients) {
 	UpdateCurrentUser(CurrentUser, VectorThatHaveAllClients);//update the global var
 }
 
-
 bool EnterY_N() {
 	char c;
 	cin >> c;
@@ -203,17 +202,18 @@ bool EnterCorrectAmountToWithdraw( int &amount) {
 	if ( AmountToWithDraw > CurrentUser.account_balance)
 	{
 		screen_color(red);
-		cout << "\a\n\n The amount exceed you balance ";
+		cout << "\a\n\n The amount exceed you balance \n";
 		return false; 
 	}
 
 	while ( !(AmountToWithDraw % 5 == 0) ) { // multple of 5
 
 		// reinput again 
+		screen_color(red_on_black);
 		AmountToWithDraw = enter_postive_number("\a\nEnter number multiple of 5's: ");
 		
 	 }
-	
+	screen_color(black);
 	amount = AmountToWithDraw;
 	return true; 
 
@@ -271,7 +271,7 @@ void ShowDepositScreen(vector<StUser>& VectorThatHaveAllClients) {
 
 // option [4]
 void CheckBalance(StUser &CurentUserBalance) {
-	cout << "\n\n\t\t The User \"" << CurentUserBalance.name<<"\" 's account balance is: "<< CurentUserBalance.account_balance << endl;
+	cout << "\n\n\t The User \"" << CurentUserBalance.name<<"\" 's account balance is: "<< CurentUserBalance.account_balance << endl;
 }
 
 // option [5]
