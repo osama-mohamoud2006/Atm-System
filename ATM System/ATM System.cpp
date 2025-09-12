@@ -196,7 +196,6 @@ void QuickWithDrawMainMenu() {
 	cout << "\n=======================================\n";
 	cout << "\nYour balance is: " << CurrentUser.account_balance << endl;
 }
-
 void QuickWithDrawMainLogic(vector<StUser>& VectorThatHaveAllClients, int AmountOption, bool &ContinueWithDraw)
 {
 	for (StUser& U : VectorThatHaveAllClients) {
@@ -220,7 +219,6 @@ void QuickWithDrawMainLogic(vector<StUser>& VectorThatHaveAllClients, int Amount
 
 	UpdateAll(VectorThatHaveAllClients);
 }
-
 void ImplementOptionInQuickDraw(EnQuickWithdrawOption noption , vector<StUser>& VectorThatHaveAllClients, bool& ContinueWithDraw) {
 
 	switch (noption) {
@@ -262,7 +260,6 @@ void ImplementOptionInQuickDraw(EnQuickWithdrawOption noption , vector<StUser>& 
 	}
 
 }
-
 //option[1]
 void QuickWithdrawScreen(vector<StUser>& VectorThatHaveAllClients) {
 	bool ContinueWithDraw;
@@ -278,6 +275,7 @@ void QuickWithdrawScreen(vector<StUser>& VectorThatHaveAllClients) {
 	}
 
 }
+
 
 bool EnterCorrectAmountToWithdraw( int &amount) {
 
@@ -323,7 +321,7 @@ void ShowNoramlWithDrawScreen(vector<StUser>& VectorThatHaveAllClients ) {
 	print_menu_option("Normal Withdraw Screen");
 
 	int amount = 0; 
-	if (EnterCorrectAmountToWithdraw(amount)) // if the number isn't exceed account balance and it is multiple of 5
+	if (EnterCorrectAmountToWithdraw(amount)==true) // if the number isn't exceed account balance and it is multiple of 5
 	{
 
 		if (ConfrimOperation("withdraw")) {
