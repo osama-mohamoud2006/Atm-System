@@ -207,7 +207,7 @@ bool EnterCorrectAmountToWithdraw( int &amount) {
 		return false; 
 	}
 
-	while ( !(AmountToWithDraw % 5 != 0) ) { // multple of 5
+	while ( !(AmountToWithDraw % 5 == 0) ) { // multple of 5
 
 		// reinput again 
 		AmountToWithDraw = enter_postive_number("\a\nEnter number multiple of 5's: ");
@@ -242,7 +242,7 @@ void ShowNoramlWithDrawScreen(vector<StUser>& VectorThatHaveAllClients ) {
 	if (EnterCorrectAmountToWithdraw(amount)) // if the number isn't exceed account balance and it is multiple of 5
 	{
 
-		if (ConfrimOperation("\nAre you Sure you want to perform this withdraw [y],[n]:  ")) {
+		if (ConfrimOperation("withdraw")) {
 			NormalWithDrawLogic(VectorThatHaveAllClients, amount);
 			cout << "\nDone Successfully , Now Balance is : " << CurrentUser.account_balance << endl;
 		}
