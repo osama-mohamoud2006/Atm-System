@@ -244,6 +244,7 @@ void ShowNoramlWithDrawScreen(vector<StUser>& VectorThatHaveAllClients ) {
 
 		if (ConfrimOperation("\nAre you Sure you want to perform this withdraw [y],[n]:  ")) {
 			NormalWithDrawLogic(VectorThatHaveAllClients, amount);
+			cout << "\nDone Successfully , Now Balance is : " << CurrentUser.account_balance << endl;
 		}
 	}
 
