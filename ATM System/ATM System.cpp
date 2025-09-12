@@ -257,12 +257,12 @@ bool IsAmountTrueToStartQuickWithdraw(vector<StUser>& VectorThatHaveAllClients ,
 
 			if (U.account_balance < (Amount)) {
 				cout << "\n\aThe amount exceeds your balance!\n\n";
-				return true; // the amount is bigger than actual balance 
+				return false; // the amount is bigger than actual balance 
 			}
 
 		}
 	}
-	return false;
+	return true;
 }
 
 //option[1]
