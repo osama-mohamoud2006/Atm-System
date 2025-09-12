@@ -230,7 +230,7 @@ void ImplementOptionInQuickDraw(EnQuickWithdrawOption noption , vector<StUser>& 
 		QuickWithDrawMainLogic(VectorThatHaveAllClients, 50, ContinueWithDraw);
 		break;
 
-	case EnQuickWithdrawOption::OneThousand:
+	case EnQuickWithdrawOption::OneHundered:
 		QuickWithDrawMainLogic(VectorThatHaveAllClients, 100, ContinueWithDraw);
 		break;
 
@@ -250,7 +250,7 @@ void ImplementOptionInQuickDraw(EnQuickWithdrawOption noption , vector<StUser>& 
 		QuickWithDrawMainLogic(VectorThatHaveAllClients, 800, ContinueWithDraw);
 		break;
 
-	case EnQuickWithdrawOption::OneHundered:
+	case EnQuickWithdrawOption::OneThousand:
 		QuickWithDrawMainLogic(VectorThatHaveAllClients, 1000, ContinueWithDraw);
 		break;
 
@@ -289,7 +289,7 @@ bool EnterCorrectAmountToWithdraw( int &amount) {
 		return false; 
 	}
 	else {
-		while (!(AmountToWithDraw % 5 == 0) ||!(AmountToWithDraw > CurrentUser.account_balance)) { // multple of 5
+		while (!(AmountToWithDraw % 5 == 0) ||(AmountToWithDraw > CurrentUser.account_balance)) { // multple of 5
 
 			// reinput again 
 			screen_color(red_on_black);
