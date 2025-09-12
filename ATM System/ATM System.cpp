@@ -177,22 +177,26 @@ bool ConfrimOperation(string OperationName) {
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 
-void DepositMainLogic(vector<StUser>& VectorThatHaveAllClients, int amount ) {
+enum EnQuickWithdrawOption{Twenty=1 , Fifty=2, OneHundered=3 , TwoHundered=4 , FourHunderd=5 ,
+	SixHundered=6, EigthHundered=7, OneThousand=8 , eExit=9};
 
-	for (StUser& U : VectorThatHaveAllClients) {
+void QuickWithDrawMainMenu() {
 
-		if (IsAccountNumberExistInVector(U, CurrentUser) == true) {
-			U.account_balance += amount;
-			break;
-		}
-	}
-
-	UpdateAll(VectorThatHaveAllClients);
-	//EditFile(VectorThatHaveAllClients, path); // update file
-	//VectorThatHaveAllClients= VectorThatHaveAllData(path);//refresh vector 
-	//UpdateCurrentUser(CurrentUser, VectorThatHaveAllClients);//update the global var
+	print_menu_option("Quick Withdraw");
+	cout << "\n\t" << setw(7) << "[1] 20" << setw(10) << "[2] 50" << endl;
+	cout << "\n\t" << setw(7) << "[3] 100" << setw(10) << "[4] 200" << endl;
+	cout << "\n\t" << setw(7) << "[5] 400" << setw(10) << "[6] 600" << endl;
+	cout << "\n\t" << setw(7) << "[7] 800" << setw(10) << "[8] 1000" << endl;
 }
 
+
+
+//option[1]
+void QuickWithdraw(vector<StUser>& VectorThatHaveAllClients) {
+
+	cout << "\nYour balance is: " << CurrentUser.account_balance << endl;
+
+}
 
 bool EnterCorrectAmountToWithdraw( int &amount) {
 
@@ -213,12 +217,12 @@ bool EnterCorrectAmountToWithdraw( int &amount) {
 		AmountToWithDraw = enter_postive_number("\a\nEnter number multiple of 5's: ");
 		
 	 }
+
 	screen_color(black);
 	amount = AmountToWithDraw;
 	return true; 
 
 }
-
 void NormalWithDrawLogic(vector<StUser>& VectorThatHaveAllClients, int amount) {
 
 	for (StUser& U : VectorThatHaveAllClients)
@@ -232,7 +236,6 @@ void NormalWithDrawLogic(vector<StUser>& VectorThatHaveAllClients, int amount) {
 
 	UpdateAll(VectorThatHaveAllClients); 
 }
-
 //option[2]
 void ShowNoramlWithDrawScreen(vector<StUser>& VectorThatHaveAllClients ) {
 
@@ -251,6 +254,21 @@ void ShowNoramlWithDrawScreen(vector<StUser>& VectorThatHaveAllClients ) {
 }
 
 
+void DepositMainLogic(vector<StUser>& VectorThatHaveAllClients, int amount) {
+
+	for (StUser& U : VectorThatHaveAllClients) {
+
+		if (IsAccountNumberExistInVector(U, CurrentUser) == true) {
+			U.account_balance += amount;
+			break;
+		}
+	}
+
+	UpdateAll(VectorThatHaveAllClients);
+	//EditFile(VectorThatHaveAllClients, path); // update file
+	//VectorThatHaveAllClients= VectorThatHaveAllData(path);//refresh vector 
+	//UpdateCurrentUser(CurrentUser, VectorThatHaveAllClients);//update the global var
+}
 // option [3]
 void ShowDepositScreen(vector<StUser>& VectorThatHaveAllClients) {
 
@@ -278,8 +296,6 @@ void CheckBalance(StUser &CurentUserBalance) {
 void logout() {
 	login();
 }
-
-
 
 void ImplementOptionAccordingToUserChoice(enMainMenuOptions Option ,vector<StUser>& VectorThatHaveAllClients) {
 
@@ -396,6 +412,7 @@ void login() {
 }
 
 int main() {
-	login();
+	QuickWithDrawMainMenu();
+	//login();
 	return 0;
 }
