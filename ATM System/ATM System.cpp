@@ -203,7 +203,6 @@ void QuickWithDrawMainLogic(vector<StUser>& VectorThatHaveAllClients, int Amount
 
 	UpdateAll(VectorThatHaveAllClients);
 }
-
 void ImplementOptionInQuickDraw(EnQuickWithdrawOption noption , vector<StUser>& VectorThatHaveAllClients) {
 
 	switch (noption) {
@@ -245,10 +244,6 @@ void ImplementOptionInQuickDraw(EnQuickWithdrawOption noption , vector<StUser>& 
 	}
 
 }
-
-
-
-
 bool IsAmountTrueToStartQuickWithdraw(vector<StUser>& VectorThatHaveAllClients , int Amount) {
 
 	for (StUser& U : VectorThatHaveAllClients) {
@@ -264,18 +259,17 @@ bool IsAmountTrueToStartQuickWithdraw(vector<StUser>& VectorThatHaveAllClients ,
 	}
 	return true;
 }
-
 //option[1]
 void QuickWithdrawScreen(vector<StUser>& VectorThatHaveAllClients) {
 
-	QuickWithDrawMainMenu(); // print menu  
-	cout << "\nChoose What To Withdraw From [1] To [8]: ";
+	QuickWithDrawMainMenu(); // print menu 
 
+	cout << "\nChoose What To Withdraw From [1] To [8]: ";
 	int ChoiceOption = enter_number_from_to(1, 8);
 
 	if (IsAmountTrueToStartQuickWithdraw(VectorThatHaveAllClients, ChoiceOption))
 	{
-		if (ConfrimOperation("Transaction")) {
+		if (ConfrimOperation("Transaction")) { //Y
 
 			ImplementOptionInQuickDraw((EnQuickWithdrawOption)ChoiceOption, VectorThatHaveAllClients);
 			cout << "\n\nDone Successfully , your balance is: " << CurrentUser.account_balance << endl << endl;
