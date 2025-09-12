@@ -285,18 +285,18 @@ bool EnterCorrectAmountToWithdraw( int &amount) {
 	if ( AmountToWithDraw > CurrentUser.account_balance)
 	{
 		screen_color(red);
-		cout << "\a\n\n The amount exceed you balance \n";
+		cout << "\a\n\n The amount exceeds you balance \n";
 		return false; 
 	}
+	else {
+		while (!(AmountToWithDraw % 5 == 0) ||!(AmountToWithDraw > CurrentUser.account_balance)) { // multple of 5
 
-	while ( !(AmountToWithDraw % 5 == 0) ) { // multple of 5
+			// reinput again 
+			screen_color(red_on_black);
+			AmountToWithDraw = enter_postive_number("\a\nEnter number multiple of 5's: ");
 
-		// reinput again 
-		screen_color(red_on_black);
-		AmountToWithDraw = enter_postive_number("\a\nEnter number multiple of 5's: ");
-		
-	 }
-
+		}
+	}
 	screen_color(black);
 	amount = AmountToWithDraw;
 	return true; 
