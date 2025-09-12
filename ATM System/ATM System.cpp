@@ -176,6 +176,8 @@ bool ConfrimOperation(string OperationName) {
 	else return false; 
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////
+
 void DepositMainLogic(vector<StUser>& VectorThatHaveAllClients, int amount ) {
 
 	for (StUser& U : VectorThatHaveAllClients) {
@@ -191,6 +193,13 @@ void DepositMainLogic(vector<StUser>& VectorThatHaveAllClients, int amount ) {
 	//VectorThatHaveAllClients= VectorThatHaveAllData(path);//refresh vector 
 	//UpdateCurrentUser(CurrentUser, VectorThatHaveAllClients);//update the global var
 }
+
+
+//option[2]
+void ShowNoramlWithDrawScreen() {
+
+}
+
 
 // option [3]
 void ShowDepositScreen(vector<StUser>& VectorThatHaveAllClients) {
@@ -227,13 +236,7 @@ void ImplementOptionAccordingToUserChoice(enMainMenuOptions Option ,vector<StUse
 	switch (Option) {
 	case enMainMenuOptions::eQuickWithdraw:
 		system("cls");
-		/*cout << "\nwill be QuickWithdraw soon!\n";*/
-
-		for (StUser U : VectorThatHaveAllClients) {
-			if (U.account_number == CurrentUser.account_number) cout << "For testing " << U.account_balance << endl;
-		}
-
-
+		cout << "\nwill be QuickWithdraw soon!\n";
 		back_to_menu();
 		break;
 
