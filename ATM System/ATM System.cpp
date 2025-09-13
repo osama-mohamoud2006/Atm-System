@@ -390,6 +390,10 @@ void ShowCurrentUserDetails(StUser &UserDetails) {
 }
 
 void DeleteMainLogic(vector<StUser>& VectorThatHaveAllClients) {
+
+	for (StUser& U : VectorThatHaveAllClients) {
+
+	}
 	//IsAccountNumberExistInVector
 }
 
