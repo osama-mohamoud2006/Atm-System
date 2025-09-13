@@ -420,25 +420,23 @@ void DeleteAccountScreen(vector<StUser>& VectorThatHaveAllClients , bool &Clogou
 	}
 }
 
-bool IsNewPassLikesTheOldPass(vector<StUser>& VectorThatHaveAllClients, string &pass) {
+
+bool IsNewPassLikesTheOldPass(vector<StUser>& VectorThatHaveAllClients, string & NewPassword) {
 
 	for (StUser& U : VectorThatHaveAllClients) {
 
 		if (IsAccountNumberExistInVector(U, CurrentUser)) {
-			if (U.pin == NewPassword) cout << "\n\n\a What fuck!\n are you kidding!\n the new ass password is exactly the same of you OLD FUCKIN PASSWORD GETOUT PLEASE\n";
-			else U.pin = NewPassword;
-			break;
+			if (U.pin == NewPassword) return true;
 		}
 	}
+	return false;
 }
-
 void ChangePasswordLogic(vector<StUser>& VectorThatHaveAllClients, string& NewPassword) {
 
 	for (StUser& U : VectorThatHaveAllClients) {
 
 		if (IsAccountNumberExistInVector(U,CurrentUser)) {
-			if (U.pin == NewPassword) cout << "\n\n\a What fuck!\n are you kidding!\n the new ass password is exactly the same of you OLD FUCKIN PASSWORD GETOUT PLEASE\n";
-			else U.pin= NewPassword;
+			 U.pin= NewPassword;
 			break;
 		}
 	}
@@ -450,10 +448,18 @@ void ChangePasswordScreen(vector<StUser>& VectorThatHaveAllClients ) {
 	print_menu_option("Change Password");
 	string NewPass = read_string("\nEnter New Password: ");
 
-	if (ConfrimOperation("Change Password")) {
-		ChangePasswordLogic(VectorThatHaveAllClients, NewPass);
-		cout << "\nThe operation Of Changing Password Done Successfully !\n";
+	if (!IsNewPassLikesTheOldPass(VectorThatHaveAllClients, NewPass)) {
+
+		if (ConfrimOperation("Change Password")) {
+			ChangePasswordLogic(VectorThatHaveAllClients, NewPass);
+			cout << "\nThe operation Of Changing Password Done Successfully !\n";
+		}
 	}
+	else {
+		cout << "\n\n\a What fuck!\n are you kidding!";
+		cout<<"\nthe new ass password is exactly the same of you OLD FUCKIN PASSWORD GETOUT PLEASE\n";
+	}
+
 
 }
 
