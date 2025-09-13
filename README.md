@@ -87,7 +87,7 @@ Note: Update the include path for `AllStuff.h` if it’s located elsewhere.
   - Check Balance: View current balance.
   - User Info: View current user info data (phone num , name , pin).
   - Delete Account: to delete the current user account (after deleting the account,the program will logout due to deletion).
-  - ChangePassword: change current user password 
+  - Change Password: change current user password 
   - Logout: Return to user login screen.
   
 Press any key to return to menu after Any operation.
