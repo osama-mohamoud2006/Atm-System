@@ -128,3 +128,27 @@ vector<sClient> SaveCleintsDataToFile(string FileName, vector <sClient> &vClient
 }
 
 
+bool DepositBalanceToClientByAccountNumber(string AccountNumber, double amount, vector <sClient>& vClients) {
+   
+ char Answer = 'n';
+    cout << "\n\nAre you sure you want perfrom this transaction? y/n ? ";
+    cin >> Answer;
+    if (Answer == 'y' || Answer == 'Y')
+
+        if (Answer == 'Y' || Answer == 'y') {
+
+            for (sClient& c : vClients) {
+
+                if (c.AccountNumber == AccountNumber) {
+                    c.AccountBalance += amount;
+                    SaveCleintsDataToFile(ClientsFileName, vClients);
+                    cout << "\n\nDone Successfully. New balance is: " << C.AccountBalance;
+
+                    return true;
+                }
+            }
+            return false;
+        }
+}
+
+
