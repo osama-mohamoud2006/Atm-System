@@ -39,7 +39,7 @@ sClient ConvertLinetoRecord(string line, string delmi = "#//#") {
     c.PinCode = data.at(1);
     c.Name = data.at(2);
     c.Phone = data.at(3);
-    c.AccountBalance = stoi(data.at(3));
+    c.AccountBalance = stoi(data.at(4));
 
     return c; 
 }
@@ -72,6 +72,7 @@ vector<sClient>LoadCleintsDataFromFile(string FileName) {
             c = ConvertLinetoRecord(line);
             load.push_back(c);
         }
+
         read.close();
     }
     else {
@@ -221,7 +222,7 @@ double ReadDepositAmount()
 
 void PerfromDepositOption() {
 
-    vector<sClient> load = LoadCleintsDataFromFile("ClientsFileName");
+    vector<sClient> load = LoadCleintsDataFromFile(ClientsFileName);
     int am = ReadDepositAmount();
     DepositBalanceToClientByAccountNumber(CurrentClient.AccountNumber, am, load);
     CurrentClient.AccountBalance += am;
@@ -272,7 +273,7 @@ void PerfromNormalWithdrawOption() {
         return;
     }
 
-    vector<sClient> load = LoadCleintsDataFromFile("ClientsFileName");
+    vector<sClient> load = LoadCleintsDataFromFile(ClientsFileName);
     DepositBalanceToClientByAccountNumber(CurrentClient.AccountNumber, w*-1, load);
     CurrentClient.AccountBalance -= w;
 }
