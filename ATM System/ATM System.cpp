@@ -188,7 +188,7 @@ void QuickWithDrawMainMenu() {
 	cout << "\n" << setw(10) << "[3] 100" << setw(15) << "[4] 200" << endl;
 	cout << "\n" << setw(10) << "[5] 400" << setw(15) << "[6] 600" << endl;
 	cout << "\n" << setw(10) << "[7] 800" << setw(16) << "[8] 1000" << endl;
-	cout << "\n" << "\t" << "[9] Exit" << endl;
+	cout << "\n" << "\t  " << "[9] Exit" << endl;
 	cout << "\n=======================================\n";
 	cout << "\nYour balance is: " << CurrentUser.account_balance << endl;
 }
@@ -268,7 +268,7 @@ void QuickWithdrawScreen(vector<StUser>& VectorThatHaveAllClients) {
 
 	QuickWithDrawMainMenu(); // print menu 
 
-	cout << "\nChoose What To Withdraw From [1] To [8]: ";
+	cout << "\nChoose What To Withdraw From [1] To [9]: ";
 	int ChoiceOption = enter_number_from_to(1, 9);
 	if (ChoiceOption == 9) return; // exit the operation 
 	if (IsAmountTrueToStartQuickWithdraw(VectorThatHaveAllClients, ChoiceOption))
