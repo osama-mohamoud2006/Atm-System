@@ -1,0 +1,8 @@
+﻿  Resolve with another way.cpp
+E:\projects\my library\logic_stuff.h(119,14): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'Resolve%20with%20another%20way.cpp')
+  
+E:\projects\my library\logic_stuff.h(264,25): warning C4267: '=': conversion from 'size_t' to 'short', possible loss of data
+  (compiling source file 'Resolve%20with%20another%20way.cpp')
+  
+  Resolve with another way.vcxproj -> E:\projects\c++ course\08 - Algorithms & Problem Solving Level 4\Project 2\Resolve with another way\x64\Debug\Resolve with another way.exe
