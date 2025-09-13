@@ -201,5 +201,38 @@ void PerfromQuickWithdrawOption(short QuickWithdrawOption) {
 
     if (QuickWithdrawOption == 9) return; 
 
-    short op = ReadQuickWithdrawOption();
+    short op = getQuickWithDrawAmount(ReadQuickWithdrawOption());
+
+    if (op > CurrentClient.AccountBalance) {
+        cout << "\nThe amount exceeds your balance, make another choice.\n";
+        cout << "Press Anykey to continue...";
+        system("pause>0");
+        ShowQuickWithdrawScreen();
+        return;
+    }
+
+    vector <sClient> vClients = LoadCleintsDataFromFile(ClientsFileName);
+    DepositBalanceToClientByAccountNumber(CurrentClient.AccountNumber, op*-1, vClients);
+    CurrentClient.AccountBalance -= op;
+}
+
+double ReadDepositAmount()
+{
+    double Amount;
+    cout << "\nEnter a positive Deposit Amount? ";
+
+    cin >> Amount;
+    while (Amount <= 0)
+    {
+        cout << "\nEnter a positive Deposit Amount? ";
+        cin >> Amount;
+    }
+    return Amount;
+}
+
+void PerfromDepositOption() {
+
+    vector<sClient> load = LoadCleintsDataFromFile("ClientsFileName");
+    int am = ReadDepositAmount();
+    DepositBalanceToClientByAccountNumber(CurrentClient.AccountNumber,)
 }
