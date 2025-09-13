@@ -435,7 +435,7 @@ void ChangePasswordScreen(vector<StUser>& VectorThatHaveAllClients ) {
 	print_menu_option("Change Password");
 	string NewPass = read_string("\nEnter New Password: ");
 
-	if (ConfrimOperation("Change PassWord")) {
+	if (ConfrimOperation("Change Password")) {
 		ChangePasswordLogic(VectorThatHaveAllClients, NewPass);
 		cout << "\nThe operation Of Changing Password Done Successfully !\n";
 	}
@@ -491,6 +491,12 @@ void ImplementOptionAccordingToUserChoice(enMainMenuOptions Option ,vector<StUse
 			else back_to_menu();
 			break;
 
+	case enMainMenuOptions::eChangePassword:
+		system("cls");
+		ChangePasswordScreen(VectorThatHaveAllClients);
+		back_to_menu();
+		break;
+
 	    case enMainMenuOptions::eLogout:
 		system("cls");
 		logout();
@@ -510,7 +516,8 @@ void main_menu() {
 	cout << setw(4) << "\t[4] Check Balance." << endl;
 	cout << setw(4) << "\t[5] User Info." << endl;
 	cout << setw(4) << "\t[6] Delete Account." << endl;
-	cout << setw(4) << "\t[7] logout." << endl;
+	cout << setw(4) << "\t[7] Change Password." << endl;
+	cout << setw(4) << "\t[8] logout." << endl;
 	cout << "\n_____________________________________________________\n\n";
 	cout << "Please enter the option you want: ";
 
