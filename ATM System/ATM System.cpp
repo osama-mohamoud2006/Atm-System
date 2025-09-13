@@ -380,6 +380,12 @@ void CheckBalance(StUser &CurentUserBalance) {
 	cout << "\n\n\t The User \"" << CurentUserBalance.name<<"\" 's account balance is: "<< CurentUserBalance.account_balance << endl;
 }
 
+void ShowCurrentUserDetails(StUser &UserDetails) {
+	cout << "\n\t" << UserDetails.name << endl;
+	cout << "\t" << UserDetails.pin << endl;
+
+}
+
 // option [5]
 void logout() {
 	login();
