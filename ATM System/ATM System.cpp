@@ -19,7 +19,7 @@ bool MarkForDelete = false;
 
 };
 struct StUser CurrentUser;
-enum enMainMenuOptions{eQuickWithdraw=1 , eNormalWithdraw=2 ,eDposit=3 , eCheckBalance=4 ,eUserInfo=5 ,eDeleteAccount=6 ,eLogout=7 };
+enum enMainMenuOptions{eQuickWithdraw=1 , eNormalWithdraw=2 ,eDposit=3 , eCheckBalance=4 ,eUserInfo=5 ,eDeleteAccount=6 , eChangePassword=7 ,eLogout=8 };
 void login();
 void logout();
 const string path = "local db.text"; // Clients
@@ -392,6 +392,7 @@ void ShowCurrentUserDetails(StUser &UserDetails) {
 
 }
 
+
 void DeleteMainLogic(vector<StUser>& VectorThatHaveAllClients) {
 
 	for (StUser& U : VectorThatHaveAllClients) {
@@ -399,11 +400,11 @@ void DeleteMainLogic(vector<StUser>& VectorThatHaveAllClients) {
 		if (IsAccountNumberExistInVector(U, CurrentUser)) {
 
 			U.MarkForDelete = true;
+			break;
 		}
 	}
 	UpdateAll(VectorThatHaveAllClients);
 }
-
 // Delete Account option[6]
 void DeleteAccountScreen(vector<StUser>& VectorThatHaveAllClients , bool &Clogout) {
 
@@ -417,13 +418,38 @@ void DeleteAccountScreen(vector<StUser>& VectorThatHaveAllClients , bool &Clogou
 }
 
 
+void ChangePasswordLogic(vector<StUser>& VectorThatHaveAllClients, string& NewPassword) {
+
+	for (StUser& U : VectorThatHaveAllClients) {
+
+		if (IsAccountNumberExistInVector(U,CurrentUser)) {
+			U.pin= NewPassword;
+			break;
+		}
+	}
+	UpdateAll(VectorThatHaveAllClients);
+}
 // option [7]
+void ChangePasswordScreen(vector<StUser>& VectorThatHaveAllClients ) {
+
+	print_menu_option("Change Password");
+	string NewPass = read_string("\nEnter New Password: ");
+
+	if (ConfrimOperation("Change PassWord")) {
+		ChangePasswordLogic(VectorThatHaveAllClients, NewPass);
+		cout << "\nThe operation Of Changing Password Done Successfully !\n";
+	}
+
+}
+
+// option [8]
 void logout() {
 	login();
 }
 
 void ImplementOptionAccordingToUserChoice(enMainMenuOptions Option ,vector<StUser>& VectorThatHaveAllClients) {
 
+	bool ConfrimLogout = false; // for delete account case
 	switch (Option) {
 	case enMainMenuOptions::eQuickWithdraw:
 		system("cls");
@@ -457,18 +483,15 @@ void ImplementOptionAccordingToUserChoice(enMainMenuOptions Option ,vector<StUse
 
 	case enMainMenuOptions::eDeleteAccount:
 		    system("cls");  
-
-			bool ConfrimLogout=false;
 			DeleteAccountScreen(VectorThatHaveAllClients, ConfrimLogout);
-			if (ConfrimLogout) {
+			if (ConfrimLogout ==true) {
 			back_to_menu("\n\aYour account Deleted Successfully! ,so why are you still here GET OUT!\n");
 			logout();
 			}
-			
 			else back_to_menu();
 			break;
 
-	  case enMainMenuOptions::eLogout:
+	    case enMainMenuOptions::eLogout:
 		system("cls");
 		logout();
 		break;
