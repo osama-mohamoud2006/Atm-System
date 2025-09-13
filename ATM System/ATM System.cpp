@@ -18,7 +18,7 @@ int account_balance = 0;
 
 };
 struct StUser CurrentUser;
-enum enMainMenuOptions{eQuickWithdraw=1 , eNormalWithdraw=2 ,eDposit=3 , eCheckBalance=4 ,eUserInfo=5 ,eLogout=6 };
+enum enMainMenuOptions{eQuickWithdraw=1 , eNormalWithdraw=2 ,eDposit=3 , eCheckBalance=4 ,eUserInfo=5 ,eDeleteAccount=6 ,eLogout=7 };
 void login();
 const string path = "local db.text"; // Clients
 const string delmi = "#//#";
@@ -379,6 +379,7 @@ void ShowDepositScreen(vector<StUser>& VectorThatHaveAllClients) {
 void CheckBalance(StUser &CurentUserBalance) {
 	cout << "\n\n\t The User \"" << CurentUserBalance.name<<"\" 's account balance is: "<< CurentUserBalance.account_balance << endl;
 }
+
 //option [5]
 void ShowCurrentUserDetails(StUser &UserDetails) {
 	cout << "\n\t"<<"Name: " << UserDetails.name << endl;
@@ -388,7 +389,17 @@ void ShowCurrentUserDetails(StUser &UserDetails) {
 
 }
 
-// option [6]
+void DeleteMainLogic(vector<StUser>& VectorThatHaveAllClients) {
+	//IsAccountNumberExistInVector
+}
+
+// Delete Account
+void DeleteAccountScreen(vector<StUser>& VectorThatHaveAllClients) {
+
+}
+
+
+// option [7]
 void logout() {
 	login();
 }
