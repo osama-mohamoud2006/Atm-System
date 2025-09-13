@@ -18,7 +18,7 @@ int account_balance = 0;
 
 };
 struct StUser CurrentUser;
-enum enMainMenuOptions{eQuickWithdraw=1 , eNormalWithdraw=2 ,eDposit=3 , eCheckBalance=4 ,eLogout=5 };
+enum enMainMenuOptions{eQuickWithdraw=1 , eNormalWithdraw=2 ,eDposit=3 , eCheckBalance=4 ,eUserInfo=5 ,eLogout=6 };
 void login();
 const string path = "local db.text"; // Clients
 const string delmi = "#//#";
@@ -379,14 +379,16 @@ void ShowDepositScreen(vector<StUser>& VectorThatHaveAllClients) {
 void CheckBalance(StUser &CurentUserBalance) {
 	cout << "\n\n\t The User \"" << CurentUserBalance.name<<"\" 's account balance is: "<< CurentUserBalance.account_balance << endl;
 }
-
+//option [5]
 void ShowCurrentUserDetails(StUser &UserDetails) {
-	cout << "\n\t" << UserDetails.name << endl;
-	cout << "\t" << UserDetails.pin << endl;
+	cout << "\n\t"<<"Name: " << UserDetails.name << endl;
+	cout << "\t"<<"Pin: " << UserDetails.pin << endl;
+	cout << "\t"<<"Phone: " << UserDetails.phone << endl;
+	cout << "\t"<<"AccountNumber: " << UserDetails.account_number << endl;
 
 }
 
-// option [5]
+// option [6]
 void logout() {
 	login();
 }
@@ -418,6 +420,12 @@ void ImplementOptionAccordingToUserChoice(enMainMenuOptions Option ,vector<StUse
 		back_to_menu();
 		break;
 
+	case enMainMenuOptions::eUserInfo:
+			system("cls");
+			ShowCurrentUserDetails(CurrentUser);
+			back_to_menu();
+			break;
+
 	case enMainMenuOptions::eLogout:
 		system("cls");
 		logout();
@@ -435,7 +443,8 @@ void main_menu() {
 	cout << setw(4) << "\t[2] Normal Withdraw." << endl;
 	cout << setw(4) << "\t[3] Deposit." << endl;
 	cout << setw(4) << "\t[4] Check Balance." << endl;
-	cout << setw(4) << "\t[5] logout." << endl;
+	cout << setw(4) << "\t[5] User Info." << endl;
+	cout << setw(4) << "\t[6] logout." << endl;
 	cout << "\n_____________________________________________________\n\n";
 	cout << "Please enter the option you want: ";
 
