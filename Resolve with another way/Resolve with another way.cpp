@@ -386,7 +386,7 @@ void Login() {
     string AccountNumber, PinCode;
 
     do {
-        print_menu_option("login");
+        print_menu_option(colorText("login","red",true));
 
         if (Failed) {
             cout << "\n invaild pass or acc num\n";
