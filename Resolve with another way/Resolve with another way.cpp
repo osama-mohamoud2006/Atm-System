@@ -362,8 +362,7 @@ void PerfromMainMenueOption(enMainMenueOptions MainMenueOption)
 
 void ShowMainMenue()
 {
-    system("cls");
-    cout << "===========================================\n";
+    system("cls");    cout << "===========================================\n";
     cout << "\t\tATM Main Menue Screen\n";
     cout << "===========================================\n";
     cout << "\t[1] Quick Withdraw.\n";
