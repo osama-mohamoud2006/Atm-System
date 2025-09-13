@@ -386,9 +386,12 @@ void CheckBalance(StUser &CurentUserBalance) {
 //option [5]
 void ShowCurrentUserDetails(StUser &UserDetails) {
 	cout << "\n\t"<<"Name: " << UserDetails.name << endl;
-	cout << "\t"<<"Pin: " << UserDetails.pin << endl;
+	cout << "\t" << "Pin: " << UserDetails.pin << endl;
+	cout << "\t" << "AccountNumber: " << UserDetails.account_number << endl;
 	cout << "\t"<<"Phone: " << UserDetails.phone << endl;
-	cout << "\t"<<"AccountNumber: " << UserDetails.account_number << endl;
+
+	cout << "\n\tYou Have Missed Account Balance? check this option: Check Balance.\n\n";
+	
 
 }
 
