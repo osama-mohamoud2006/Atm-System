@@ -15,6 +15,7 @@ string pin = " ";
 string name = " ";
 string phone = " ";
 int account_balance = 0;
+bool MarkForDelete = false;
 
 };
 struct StUser CurrentUser;
@@ -136,9 +137,10 @@ void EditFile(vector<StUser> &VectorThatHaveAllData , string path)
 	{
 		string line;
 		for (StUser& Vdata : VectorThatHaveAllData) {
-
-			line = ConvertRecordToLine(Vdata);
-			write << line << endl;
+			if (Vdata.MarkForDelete == false) { // if it isn't marked for delete 
+				line = ConvertRecordToLine(Vdata);
+				write << line << endl;
+			}
 		}
 		write.close();
 	}
@@ -393,8 +395,12 @@ void DeleteMainLogic(vector<StUser>& VectorThatHaveAllClients) {
 
 	for (StUser& U : VectorThatHaveAllClients) {
 
+		if (IsAccountNumberExistInVector(U, CurrentUser)) {
+
+			U.MarkForDelete = true;
+		}
 	}
-	//IsAccountNumberExistInVector
+	
 }
 
 // Delete Account
