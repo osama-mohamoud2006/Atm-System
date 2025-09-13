@@ -405,13 +405,14 @@ void DeleteMainLogic(vector<StUser>& VectorThatHaveAllClients) {
 }
 
 // Delete Account option[6]
-void DeleteAccountScreen(vector<StUser>& VectorThatHaveAllClients) {
+void DeleteAccountScreen(vector<StUser>& VectorThatHaveAllClients , bool &Clogout) {
 
 	print_menu_option("Delete Account Screen");
 
-	if (ConfrimOperation("Delete This Account")) 
+	if (ConfrimOperation("Deletion For This Account")) 
 	{
 		DeleteMainLogic(VectorThatHaveAllClients);
+		Clogout = true;
 	}
 }
 
@@ -456,9 +457,15 @@ void ImplementOptionAccordingToUserChoice(enMainMenuOptions Option ,vector<StUse
 
 	case enMainMenuOptions::eDeleteAccount:
 		    system("cls");  
-			DeleteAccountScreen(VectorThatHaveAllClients);
+
+			bool ConfrimLogout=false;
+			DeleteAccountScreen(VectorThatHaveAllClients, ConfrimLogout);
+			if (ConfrimLogout) {
 			back_to_menu("\n\aYour account Deleted Successfully! ,so why are you still here GET OUT!\n");
 			logout();
+			}
+			
+			else back_to_menu();
 			break;
 
 	  case enMainMenuOptions::eLogout:
