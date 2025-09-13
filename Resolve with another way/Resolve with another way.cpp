@@ -75,18 +75,18 @@ vector<sClient>LoadCleintsDataFromFile(string FileName) {
 
     vector< sClient> load; 
 
-    fstream write;
-    write.open(FileName,ios::in);// overwriting
+    fstream read;
+    read.open(FileName,ios::in);// read
 
-    if (write.is_open()) 
+    if (read.is_open()) 
     {
         string line;
         sClient c;
-        while (getline(write, line)) {
+        while (getline(read, line)) {
             c = ConvertLinetoRecord(line);
             load.push_back(c);
         }
-        write.close();
+        read.close();
     }
 
     return load;
@@ -108,4 +108,23 @@ vector<sClient> SaveCleintsDataToFile(string FileName, vector <sClient> &vClient
 
     fstream write;
     write.open(FileName, ios::out); // overwrite 
+
+   if( write.is_open()) {
+
+       for(sClient &c: vClients){
+
+           if (c.MarkForDelete == false) 
+           {
+           string line = ConvertRecordToLine(c);
+           write << line << endl;
+
+           }
+         
+       }
+       write.close();
+    }
+
+   return vClients;
 }
+
+
