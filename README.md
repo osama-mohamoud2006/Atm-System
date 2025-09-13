@@ -33,6 +33,9 @@ The project is built in C++ and relies on a custom library (`AllStuff.h`) for ut
   - Normal Withdraw: Custom amounts (multiple of 5, within balance).
   - Deposit: Add funds to the account.
   - Check Balance: Display current user balance.
+  -  User Info: Display current user info.
+  -  Delete Account: Delete the current user
+  -  Change Password: Change the current user password
   - Logout: Return to login screen.
 - **Data Persistence**: User data (account number, PIN, name, phone, balance) stored in `local db.text`.
 
@@ -46,7 +49,7 @@ The project is built in C++ and relies on a custom library (`AllStuff.h`) for ut
 
 - **Key Functions**:
   - **Data Handling**: `VectorThatHaveAllData()`, `ConvertLineToRecord()`, `SplitString()`, `EditFile()`, `UpdateAll()`.
-  - **User Operations**: `QuickWithdrawScreen()`, `ShowNoramlWithDrawScreen()`, `ShowDepositScreen()`, `CheckBalance()`, `logout()`.
+  - **User Operations**: `QuickWithdrawScreen()`, `ShowNoramlWithDrawScreen()`, `ShowDepositScreen()`, `CheckBalance()`, `ShowCurrentUserDetails`,`DeleteAccountScreen` ,`ChangePasswordScreen`,`logout()`.
   - **Login**: `login()`, `IsUserAuthenticated()`.
 
 The code is modular, with separate sections for user transactions and authentication.
@@ -77,11 +80,14 @@ Note: Update the include path for `AllStuff.h` if it’s located elsewhere.
 
 ### User Transactions
 - After user log in with account number and PIN.
-- Main menu (options 1-5):
+- Main menu (options 1-8):
   - Quick Withdraw: Select predefined amounts; validates balance.
   - Normal Withdraw: Enter custom amount (multiple of 5); checks balance.
   - Deposit: Add positive amount.
   - Check Balance: View current balance.
+  - User Info: View current user info data (phone num , name , pin).
+  - Delete Account: to delete the current user account (after deleting the account,the program will logout due to deletion).
+  - Change Password: change current user password 
   - Logout: Return to user login screen.
   
 Press any key to return to menu after Any operation.

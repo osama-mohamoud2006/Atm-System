@@ -529,7 +529,7 @@ void main_menu() {
 	screen_color(black);
 	cout << setw(5)<< "\tWelcome to Atm System "<< "\033[38;5;177m"<< CurrentUser.name<< "\033[0m" << " !";
 	cout << "\n_____________________________________________________\n\n";
-	cout << setw(5) << "Please enter the number of the option you want: \n" << endl;
+	cout << "\033[36m" << setw(5)<< " Please enter the number of the option you want: \n"<< "\033[0m" << endl;
 	cout << setw(4) << "\t[1] Quick Withdraw." << endl;
 	cout << setw(4) << "\t[2] Normal Withdraw." << endl;
 	cout << setw(4) << "\t[3] Deposit." << endl;
