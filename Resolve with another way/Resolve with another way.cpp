@@ -142,7 +142,7 @@ bool DepositBalanceToClientByAccountNumber(string AccountNumber, double amount, 
                 if (c.AccountNumber == AccountNumber) {
                     c.AccountBalance += amount;
                     SaveCleintsDataToFile(ClientsFileName, vClients);
-                    cout << "\n\nDone Successfully. New balance is: " << C.AccountBalance;
+                    cout << "\n\nDone Successfully. New balance is: " << c.AccountBalance;
 
                     return true;
                 }
@@ -152,3 +152,54 @@ bool DepositBalanceToClientByAccountNumber(string AccountNumber, double amount, 
 }
 
 
+short ReadQuickWithdrawOption()
+{
+    short Choice = 0;
+    while (Choice < 1 || Choice>9)
+    {
+        cout << "\nChoose what to do from [1] to [9] ? ";
+        cin >> Choice;
+    }
+
+    return Choice;
+}
+
+short getQuickWithDrawAmount(short QuickWithdrawOption) {
+
+    switch (QuickWithdrawOption) {
+
+    case 1:
+        return 20;
+
+    case 2:
+        return 50;
+
+    case 3:
+        return 100;
+
+    case 4:
+        return 200;
+
+    case 5:
+        return 400;
+
+    case 6:
+        return 600;
+
+    case 7:
+        return 800;
+
+    case 8:
+        return 1000;
+
+    default:
+        return 0; 
+    }
+}
+
+void PerfromQuickWithdrawOption(short QuickWithdrawOption) {
+
+    if (QuickWithdrawOption == 9) return; 
+
+    short op = ReadQuickWithdrawOption();
+}
