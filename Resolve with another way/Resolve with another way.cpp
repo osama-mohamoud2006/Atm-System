@@ -139,6 +139,7 @@ bool DepositBalanceToClientByAccountNumber(string AccountNumber, double amount, 
             }
             return false;
         }
+    return false;
 }
 
 
@@ -191,7 +192,8 @@ void PerfromQuickWithdrawOption(short QuickWithdrawOption) {
 
     if (QuickWithdrawOption == 9) return; 
 
-    short op = getQuickWithDrawAmount(ReadQuickWithdrawOption());
+    short op = getQuickWithDrawAmount(QuickWithdrawOption);
+
 
     if (op > CurrentClient.AccountBalance) {
         cout << "\nThe amount exceeds your balance, make another choice.\n";
