@@ -527,9 +527,9 @@ void ImplementOptionAccordingToUserChoice(enMainMenuOptions Option ,vector<StUse
 void main_menu() {
 	system("cls");
 	screen_color(black);
-	cout << setw(5) << "\tWelcome to Atm System "<< CurrentUser.name<<"!";
+	cout << setw(5)<< "\tWelcome to Atm System "<< "\033[38;5;177m"<< CurrentUser.name<< "\033[0m" << " !";
 	cout << "\n_____________________________________________________\n\n";
-	cout << setw(5) << "Please enter the number of the option you want: " << endl;
+	cout << setw(5) << "Please enter the number of the option you want: \n" << endl;
 	cout << setw(4) << "\t[1] Quick Withdraw." << endl;
 	cout << setw(4) << "\t[2] Normal Withdraw." << endl;
 	cout << setw(4) << "\t[3] Deposit." << endl;
