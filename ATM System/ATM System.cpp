@@ -452,12 +452,12 @@ void ChangePasswordScreen(vector<StUser>& VectorThatHaveAllClients ) {
 
 		if (ConfrimOperation("Change Password")) {
 			ChangePasswordLogic(VectorThatHaveAllClients, NewPass);
-			cout << "\nThe operation Of Changing Password Done Successfully !\n";
+			cout << "\nThe operation Of Changing Password Was Done Successfully !\n";
 		}
 	}
 	else {
 		cout << "\n\n\a What fuck!\n are you kidding!";
-		cout<<"\nthe new ass password is exactly the same of you OLD FUCKIN PASSWORD GETOUT PLEASE\n";
+		cout<<"\nthe new ass password is exactly the same of your OLD FUCKIN PASSWORD GETOUT PLEASE\n";
 	}
 
 
@@ -529,7 +529,7 @@ void main_menu() {
 	screen_color(black);
 	cout << setw(5) << "\tWelcome to Atm System! ";
 	cout << "\n_____________________________________________________\n\n";
-	cout << setw(5) << "please enter the number of the option you want: \n" << endl;
+	cout << setw(5) <<"Hi, "<<CurrentUser.name<<"! " << "please enter the number of the option you want: \n" << endl;
 
 	cout << setw(4) << "\t[1] Quick Withdraw." << endl;
 	cout << setw(4) << "\t[2] Normal Withdraw." << endl;
