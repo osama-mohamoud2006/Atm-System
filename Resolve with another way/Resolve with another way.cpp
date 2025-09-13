@@ -74,6 +74,9 @@ vector<sClient>LoadCleintsDataFromFile(string FileName) {
         }
         read.close();
     }
+    else {
+        cout << "\a\n couldn't open file!\n";
+    }
 
     return load;
 }
@@ -386,6 +389,7 @@ void Login() {
     string AccountNumber, PinCode;
 
     do {
+        system("cls");
         print_menu_option(colorText("login","red",true));
 
         if (Failed) {
