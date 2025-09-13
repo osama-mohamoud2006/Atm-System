@@ -39,7 +39,7 @@ sClient ConvertLinetoRecord(string line, string delmi = "#//#") {
     c.PinCode = data.at(1);
     c.Name = data.at(2);
     c.Phone = data.at(3);
-    c.AccountBalance = stoi(data.at(4));
+    c.AccountBalance = stod(data.at(4));
 
     return c; 
 }
@@ -83,7 +83,7 @@ vector<sClient>LoadCleintsDataFromFile(string FileName) {
 }
 
 bool FindClientByAccountNumberAndPinCode(string acc, string pin, sClient& client) {
-    vector<sClient> load = LoadCleintsDataFromFile("ClientsFileName");
+    vector<sClient> load = LoadCleintsDataFromFile(ClientsFileName);
 
     for (sClient& c : load) {
         if (c.AccountNumber == acc && c.PinCode == pin) {
@@ -123,8 +123,7 @@ bool DepositBalanceToClientByAccountNumber(string AccountNumber, double amount, 
  char Answer = 'n';
     cout << "\n\nAre you sure you want perfrom this transaction? y/n ? ";
     cin >> Answer;
-    if (Answer == 'y' || Answer == 'Y')
-
+   
         if (Answer == 'Y' || Answer == 'y') {
 
             for (sClient& c : vClients) {
@@ -225,7 +224,7 @@ double ReadDepositAmount()
 void PerfromDepositOption() {
 
     vector<sClient> load = LoadCleintsDataFromFile(ClientsFileName);
-    int am = ReadDepositAmount();
+    double am = ReadDepositAmount();
     DepositBalanceToClientByAccountNumber(CurrentClient.AccountNumber, am, load);
     CurrentClient.AccountBalance += am;
 }
