@@ -420,13 +420,25 @@ void DeleteAccountScreen(vector<StUser>& VectorThatHaveAllClients , bool &Clogou
 	}
 }
 
+bool IsNewPassLikesTheOldPass(vector<StUser>& VectorThatHaveAllClients, string &pass) {
+
+	for (StUser& U : VectorThatHaveAllClients) {
+
+		if (IsAccountNumberExistInVector(U, CurrentUser)) {
+			if (U.pin == NewPassword) cout << "\n\n\a What fuck!\n are you kidding!\n the new ass password is exactly the same of you OLD FUCKIN PASSWORD GETOUT PLEASE\n";
+			else U.pin = NewPassword;
+			break;
+		}
+	}
+}
 
 void ChangePasswordLogic(vector<StUser>& VectorThatHaveAllClients, string& NewPassword) {
 
 	for (StUser& U : VectorThatHaveAllClients) {
 
 		if (IsAccountNumberExistInVector(U,CurrentUser)) {
-			U.pin= NewPassword;
+			if (U.pin == NewPassword) cout << "\n\n\a What fuck!\n are you kidding!\n the new ass password is exactly the same of you OLD FUCKIN PASSWORD GETOUT PLEASE\n";
+			else U.pin= NewPassword;
 			break;
 		}
 	}

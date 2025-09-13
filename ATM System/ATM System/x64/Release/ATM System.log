@@ -1,1 +1,15 @@
 ﻿  ATM System.cpp
+E:\projects\my library\logic_stuff.h(117,14): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'ATM%20System.cpp')
+  
+E:\projects\c++ course\08 - Algorithms & Problem Solving Level 4\Project 2\ATM System\ATM System.cpp(52,31): warning C4267: '=': conversion from 'size_t' to 'short', possible loss of data
+E:\projects\c++ course\08 - Algorithms & Problem Solving Level 4\Project 2\ATM System\ATM System.cpp(275,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+E:\projects\c++ course\08 - Algorithms & Problem Solving Level 4\Project 2\ATM System\ATM System.cpp(294,41): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+E:\projects\c++ course\08 - Algorithms & Problem Solving Level 4\Project 2\ATM System\ATM System.cpp(307,43): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+E:\projects\c++ course\08 - Algorithms & Problem Solving Level 4\Project 2\ATM System\ATM System.cpp(368,22): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  Generating code
+  1 of 395 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  ATM System.vcxproj -> E:\projects\c++ course\08 - Algorithms & Problem Solving Level 4\Project 2\ATM System\x64\Release\ATM System.exe
