@@ -27,14 +27,14 @@ const string delmi = "#//#";
 ///////////////////////////////////////////////////////////////////////////
 
 // things to use in  options
-void back_to_menu(string TextAppearWhenYouBack = "press any key to back to main menu !") {
-	screen_color(black);
-	cout << "\033[1;31m";
-	cout << "\n " << TextAppearWhenYouBack << endl;
-	cout << "\033[0m";
-	system("pause>0");
-
-}
+//void back_to_menu(string TextAppearWhenYouBack = "press any key to back to main menu !") {
+//	screen_color(black);
+//	cout << "\033[1;31m";
+//	cout << "\n " << TextAppearWhenYouBack << endl;
+//	cout << "\033[0m";
+//	system("pause>0");
+//
+//}
 void print_menu_option(string option_name) {
 	cout << "\n_________________________________________________\n\n\n";
 	cout << "\t" << option_name << "\n";
@@ -42,25 +42,25 @@ void print_menu_option(string option_name) {
 }
 
 
-vector<string> SplitString(string LineOfData , string delmi= "#//#") {
-
-	vector<string> res; 
-	
-	short pos;
-	string sword;
-
-	while ((pos = LineOfData.find(delmi)) != string::npos) {
-
-		sword = LineOfData.substr(0, pos);
-		if (sword != "") res.push_back(sword);
-
-		LineOfData.erase(0, pos + delmi.length());
-	}
-
-	if(LineOfData!="")  res.push_back(LineOfData);
-
-	return res;
-}
+//vector<string> SplitString(string LineOfData , string delmi= "#//#") {
+//
+//	vector<string> res; 
+//	
+//	short pos;
+//	string sword;
+//
+//	while ((pos = LineOfData.find(delmi)) != string::npos) {
+//
+//		sword = LineOfData.substr(0, pos);
+//		if (sword != "") res.push_back(sword);
+//
+//		LineOfData.erase(0, pos + delmi.length());
+//	}
+//
+//	if(LineOfData!="")  res.push_back(LineOfData);
+//
+//	return res;
+//}
 
 // will convert the string into data in struct 
 StUser ConvertLineToRecord(string LineOfData) {
