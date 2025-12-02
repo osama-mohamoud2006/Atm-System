@@ -26,7 +26,7 @@ const string path = "local db.text"; // Clients
 const string delmi = "#//#";
 ///////////////////////////////////////////////////////////////////////////
 
-// things to use in  options
+ //things to use in  options
 //void back_to_menu(string TextAppearWhenYouBack = "press any key to back to main menu !") {
 //	screen_color(black);
 //	cout << "\033[1;31m";
